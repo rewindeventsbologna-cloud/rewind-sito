@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Legal — Rewind Private Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0f0005;color:#F5EFE6;font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.8;}
+
+/* NAV TABS */
+.legal-nav{
+  background:#14000a;border-bottom:1px solid rgba(201,169,110,.15);
+  position:sticky;top:0;z-index:10;padding:0 24px;
+  display:flex;align-items:center;gap:0;overflow-x:auto;
+}
+.legal-nav a.back{
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:#C9A96E;text-decoration:none;padding:16px 0;
+  margin-right:24px;white-space:nowrap;flex-shrink:0;
+}
+.legal-nav a.back:hover{opacity:.7;}
+.tab-btn{
+  padding:16px 18px;font-family:'DM Sans',sans-serif;
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(245,239,230,.4);background:none;border:none;
+  cursor:pointer;border-bottom:2px solid transparent;
+  transition:all .2s;white-space:nowrap;flex-shrink:0;
+}
+.tab-btn:hover{color:rgba(245,239,230,.7);}
+.tab-btn.active{color:#C9A96E;border-bottom-color:#C9A96E;}
+
+/* CONTENT */
+.legal-wrap{max-width:740px;margin:0 auto;padding:48px 24px 80px;}
+.panel{display:none;}
+.panel.active{display:block;}
+.updated{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:#C9A96E;margin-bottom:32px;}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:400;color:#F5EFE6;margin-bottom:6px;}
+.sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(245,239,230,.45);font-size:.9rem;margin-bottom:36px;}
+h2{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:#F5EFE6;margin:36px 0 12px;padding-top:6px;border-top:1px solid rgba(201,169,110,.12);}
+p{font-size:.85rem;color:rgba(245,239,230,.7);margin-bottom:14px;}
+ul{padding-left:18px;margin-bottom:14px;}
+li{font-size:.85rem;color:rgba(245,239,230,.7);margin-bottom:5px;}
+a{color:#C9A96E;}
+strong{color:rgba(245,239,230,.9);}
+.box{background:rgba(201,169,110,.06);border:1px solid rgba(201,169,110,.14);padding:18px 22px;margin:20px 0;border-radius:2px;}
+.box p{margin:0;font-size:.82rem;}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.8rem;}
+th{background:rgba(201,169,110,.08);color:#C9A96E;padding:9px 13px;text-align:left;font-weight:500;letter-spacing:.06em;border:1px solid rgba(201,169,110,.12);}
+td{padding:9px 13px;color:rgba(245,239,230,.65);border:1px solid rgba(245,239,230,.05);vertical-align:top;}
+
+.revoke-btn{
+  display:inline-block;margin-top:6px;
+  background:rgba(201,169,110,.1);color:#C9A96E;
+  border:1px solid rgba(201,169,110,.22);
+  padding:9px 20px;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.66rem;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;border-radius:2px;
+  transition:background .2s;
+}
+.revoke-btn:hover{background:rgba(201,169,110,.2);}
+</style>
+</head>
+<body>
+
+<nav class="legal-nav">
+  <a href="index.html" class="back">← Sito</a>
+  <button class="tab-btn active" onclick="show('privacy',this)">Privacy Policy</button>
+  <button class="tab-btn" onclick="show('terms',this)">Termini</button>
+  <button class="tab-btn" onclick="show('cookie',this)">Cookie</button>
+</nav>
+
+<div class="legal-wrap">
+
+  <!-- ── PRIVACY POLICY ── -->
+  <div class="panel active" id="panel-privacy">
+    <p class="updated">Aggiornamento: Maggio 2026</p>
+    <h1>Privacy Policy</h1>
+    <p class="sub">Rewind Private Club — Bologna</p>
+    <div class="box"><p>Questa Privacy Policy descrive come raccogliamo e trattiamo i tuoi dati personali in conformità al Regolamento UE 2016/679 (GDPR) e al D.Lgs. 196/2003.</p></div>
+
+    <h2>1. Titolare del Trattamento</h2>
+    <p><strong>Rewind Private Club</strong> — rewindeventsbologna@gmail.com</p>
+
+    <h2>2. Dati Raccolti</h2>
+    <ul>
+      <li><strong>Nome e cognome</strong> — identificazione partecipante</li>
+      <li><strong>Email</strong> — invio conferma prenotazione</li>
+      <li><strong>Telefono</strong> — comunicazioni operative evento</li>
+      <li><strong>Pacchetto selezionato</strong> — gestione prenotazione</li>
+      <li><strong>Data iscrizione</strong> — registrata automaticamente</li>
+    </ul>
+    <p>Non raccogliamo dati sensibili. Nessun dato viene venduto o usato per marketing.</p>
+
+    <h2>3. Finalità e Base Giuridica</h2>
+    <p>Trattiamo i dati esclusivamente per: gestione prenotazione, invio email di conferma, organizzazione logistica evento. Base giuridica: Art. 6(1)(b) GDPR — esecuzione contrattuale.</p>
+
+    <h2>4. Destinatari</h2>
+    <ul>
+      <li><strong>Google LLC</strong> — i dati sono archiviati in Google Sheets (responsabile del trattamento con DPA attivo)</li>
+      <li><strong>Brevo (Sendinblue SAS)</strong> — servizio email transazionale (responsabile del trattamento)</li>
+    </ul>
+
+    <h2>5. Conservazione</h2>
+    <p>I dati sono conservati nel Google Sheet per la durata necessaria all'evento e agli adempimenti legali (max 5 anni). Log email Brevo: 30 giorni. Puoi richiedere cancellazione anticipata a rewindeventsbologna@gmail.com.</p>
+
+    <h2>6. I Tuoi Diritti (GDPR)</h2>
+    <ul>
+      <li>Accesso, rettifica, cancellazione (artt. 15-17)</li>
+      <li>Portabilità, opposizione, limitazione (artt. 18-21)</li>
+      <li>Reclamo al Garante Privacy: <a href="https://www.garanteprivacy.it" target="_blank">garanteprivacy.it</a></li>
+    </ul>
+    <p>Esercita i tuoi diritti scrivendo a <a href="mailto:rewindeventsbologna@gmail.com">rewindeventsbologna@gmail.com</a></p>
+  </div>
+
+  <!-- ── TERMINI ── -->
+  <div class="panel" id="panel-terms">
+    <p class="updated">Aggiornamento: Maggio 2026</p>
+    <h1>Termini di Servizio</h1>
+    <p class="sub">Rewind Private Club — Bologna</p>
+    <div class="box"><p>Compilando il modulo di prenotazione dichiari di aver letto e accettato questi Termini.</p></div>
+
+    <h2>1. Il Servizio</h2>
+    <p>Rewind Private Club organizza eventi privati a numero chiuso. La prenotazione online è una richiesta di partecipazione e si perfeziona con il pagamento tramite PayPal.</p>
+
+    <h2>2. Requisiti di Accesso</h2>
+    <ul>
+      <li>Accesso riservato ai <strong>soci del club</strong>. Tessera ENAC sottoscrivibile all'ingresso.</li>
+      <li>Richiesta <strong>maggiore età</strong> (18+ anni). Documento d'identità può essere richiesto.</li>
+      <li>Obbligatorio rispettare il <strong>dress code elegante</strong>.</li>
+      <li>Gli organizzatori si riservano il diritto di negare l'accesso in caso di mancato rispetto delle condizioni.</li>
+    </ul>
+
+    <h2>3. Pagamento</h2>
+    <ul>
+      <li>Prenotazione valida solo dopo <strong>pagamento anticipato</strong> via PayPal</li>
+      <li>Selezionare <strong>"Amici e familiari"</strong> per evitare commissioni</li>
+      <li>Confermata dopo verifica del pagamento da parte degli organizzatori</li>
+    </ul>
+
+    <h2>4. Rimborsi e Cancellazioni</h2>
+    <ul>
+      <li>Cancellazione <strong>oltre 48h</strong>: rimborso parziale valutabile</li>
+      <li>Cancellazione <strong>entro 48h</strong>: nessun rimborso</li>
+      <li>Cancellazione <strong>da parte nostra</strong>: rimborso integrale entro 14 giorni</li>
+    </ul>
+
+    <h2>5. Responsabilità</h2>
+    <p>Rewind Private Club non è responsabile per furto/perdita oggetti personali. In caso di forza maggiore (maltempo, restrizioni, emergenze) l'evento potrà essere posticipato con validità del biglietto sulla nuova data.</p>
+
+    <h2>6. Legge Applicabile</h2>
+    <p>Termini regolati dalla legge italiana. Foro competente: Bologna.</p>
+    <p>Contatti: <a href="mailto:rewindeventsbologna@gmail.com">rewindeventsbologna@gmail.com</a> · <a href="https://wa.me/393920559059">+39 392 055 9059</a></p>
+  </div>
+
+  <!-- ── COOKIE ── -->
+  <div class="panel" id="panel-cookie">
+    <p class="updated">Aggiornamento: Maggio 2026</p>
+    <h1>Cookie Policy</h1>
+    <p class="sub">Rewind Private Club — Bologna</p>
+    <p>Spieghiamo quali cookie usiamo, conformemente alla Direttiva ePrivacy e al GDPR.</p>
+
+    <h2>Cookie Utilizzati</h2>
+    <table>
+      <thead><tr><th>Nome</th><th>Tipo</th><th>Finalità</th><th>Durata</th></tr></thead>
+      <tbody>
+        <tr><td>rw_cookie_consent</td><td>Tecnico</td><td>Ricorda la tua scelta sul consenso cookie</td><td>1 anno</td></tr>
+        <tr><td>Google Fonts</td><td>Font (con consenso)</td><td>Carica i font tipografici. Caricato solo dopo consenso. Google può registrare l'IP.</td><td>Cache browser</td></tr>
+      </tbody>
+    </table>
+
+    <p><strong>Non utilizziamo:</strong> cookie di profilazione, Google Analytics, Facebook Pixel, remarketing di alcun tipo.</p>
+
+    <h2>Gestisci il Consenso</h2>
+    <p>Puoi modificare o revocare il consenso in qualsiasi momento:</p>
+    <button class="revoke-btn" onclick="localStorage.removeItem('rw_cookie_consent');window.location.href='index.html'">
+      ↺ Modifica preferenze cookie
+    </button>
+
+    <h2>Disabilitare i Cookie dal Browser</h2>
+    <ul>
+      <li><strong>Chrome:</strong> Impostazioni → Privacy e sicurezza → Cookie</li>
+      <li><strong>Firefox:</strong> Preferenze → Privacy e sicurezza</li>
+      <li><strong>Safari:</strong> Preferenze → Privacy → Gestisci dati sito</li>
+      <li><strong>Edge:</strong> Impostazioni → Cookie e autorizzazioni sito</li>
+    </ul>
+
+    <p>Contatti: <a href="mailto:rewindeventsbologna@gmail.com">rewindeventsbologna@gmail.com</a></p>
+  </div>
+
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// Handle URL hash for direct linking (e.g. legal.html#cookie)
+const hash = location.hash.replace('#','');
+if (['privacy','terms','cookie'].includes(hash)) {
+  const btn = document.querySelector('.tab-btn[onclick*="' + hash + '"]');
+  if (btn) show(hash, btn);
+}
+</script>
+</body>
+</html>
