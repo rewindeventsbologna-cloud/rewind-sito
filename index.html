@@ -799,14 +799,14 @@ footer{
     <div class="ticket-grid reveal">
       <div class="tk-card feat">
         <div class="tk-name">Pacchetto completo · First Release</div>
-        <div class="tk-ttl">Apericena + DJ Set</div>
-        <div class="tk-price"><sup>€</sup>20</div>
+        <div class="tk-ttl" data-cfg="titolo_pacchetto1">Apericena + DJ Set</div>
+        <div class="tk-price"><sup>€</sup><span data-cfg="prezzo_apericena">20</span></div>
         <ul class="tk-list"><li>1 calice di vino o 1 bicchiere di birra</li><li>Apericena e DJ Set</li><li>Live Performance a sorpresa</li></ul>
       </div>
       <div class="tk-card">
         <div class="tk-name">First Release</div>
-        <div class="tk-ttl">Solo DJ Set</div>
-        <div class="tk-price"><sup>€</sup>15</div>
+        <div class="tk-ttl" data-cfg="titolo_pacchetto2">Solo DJ Set</div>
+        <div class="tk-price"><sup>€</sup><span data-cfg="prezzo_dj">15</span></div>
         <ul class="tk-list"><li>DJ set con un calice di vino o un bicchiere di birra</li><li>Accesso area club</li><li>Disponibilità limitata</li></ul>
       </div>
     </div>
@@ -823,8 +823,8 @@ footer{
           <label class="f-lbl">Pacchetto scelto</label>
           <select class="f-sel" id="fPack" required>
             <option value="" disabled selected>Seleziona il pacchetto</option>
-            <option value="Apericena + DJ Set — €20">🍷 &nbsp;Apericena + DJ Set — €20</option>
-            <option value="Solo DJ Set — €15">🎵 &nbsp;Solo DJ Set — €15</option>
+            <option data-cfg-option="apericena" value="Apericena + DJ Set — €20">🍷 &nbsp;Apericena + DJ Set — €20</option>
+            <option data-cfg-option="dj" value="Solo DJ Set — €15">🎵 &nbsp;Solo DJ Set — €15</option>
           </select>
         </div>
         <!-- hidden fields for formsubmit -->
@@ -992,6 +992,55 @@ const emailTpl = (nome, pacchetto, amount=20) => `<div style="font-family:Georgi
 
 const GAS_URL = 'https://script.google.com/macros/s/AKfycby7nQ-jCiey4WeuoeHUAcldl_0ZBRuSk7Po81JXmdFmNujzNs98HWzJDDGQqw4Hrps0/exec';
 
+/* ═══ CONFIG DAL GOOGLE SHEET ═══
+   Modifica prezzi/dati su Sheets → tab "config"
+   Il sito si aggiorna al caricamento
+═══════════════════════════════ */
+let SITE_CFG = {
+  prezzo_apericena: 20,
+  prezzo_dj:        15,
+  titolo_pacchetto1:'Apericena + DJ Set',
+  titolo_pacchetto2:'Solo DJ Set',
+};
+
+async function loadConfig() {
+  try {
+    const bust = Date.now() + '_' + Math.random().toString(36).slice(2);
+    const r    = await fetch(GAS_URL + '?action=getConfig&nocache=' + bust, {
+      cache: 'no-store', redirect: 'follow'
+    });
+    if (!r.ok) return;
+    const cfg = await r.json();
+    if (!cfg || cfg.error) return;
+    SITE_CFG = {...SITE_CFG, ...cfg};
+    applyConfig(cfg);
+  } catch(e) {
+    // Usa valori default — nessun blocco
+  }
+}
+
+function applyConfig(cfg) {
+  // Aggiorna testi con data-cfg
+  document.querySelectorAll('[data-cfg]').forEach(el => {
+    const key = el.getAttribute('data-cfg');
+    if (cfg[key] !== undefined) el.textContent = cfg[key];
+  });
+  // Aggiorna options del form dropdown
+  document.querySelectorAll('[data-cfg-option]').forEach(opt => {
+    const type   = opt.getAttribute('data-cfg-option');
+    const prezzo = type === 'apericena' ? cfg.prezzo_apericena : cfg.prezzo_dj;
+    const titolo = type === 'apericena'
+      ? (cfg.titolo_pacchetto1 || 'Apericena + DJ Set')
+      : (cfg.titolo_pacchetto2 || 'Solo DJ Set');
+    const icon   = type === 'apericena' ? '🍷' : '🎵';
+    opt.value       = titolo + ' — €' + prezzo;
+    opt.textContent = icon + '  ' + titolo + ' — €' + prezzo;
+  });
+}
+
+loadConfig();
+window.addEventListener('focus', loadConfig);
+
 
 
 /* ─── saveBooking: scrive su Google Sheet via GAS ─── */
@@ -1009,14 +1058,16 @@ async function saveBooking(d){
         email:     d.email     || '',
         telefono:  d.tel       || '',
         pacchetto: d.pacchetto || '',
-        importo:   d.pacchetto && d.pacchetto.includes('15') ? 15 : 20,
+        importo:   d.pacchetto && d.pacchetto.includes(String(SITE_CFG.prezzo_dj||15))
+                     ? (SITE_CFG.prezzo_dj||15)
+                     : (SITE_CFG.prezzo_apericena||20),
         data:      d.data      || new Date().toLocaleString('it-IT')
       }),
       signal: ctrl.signal
     });
     const json = await resp.json();
-    console.log('GAS response:', JSON.stringify(json));
-  } catch(e){ console.error('GAS saveBooking failed:', e.message); }
+    console.log('GAS:', json.ok ? 'ok' : JSON.stringify(json));
+  } catch(e){ console.error('saveBooking:', e.message); }
 }
 
 /* ─── sendEmail: chiama GAS che invia via Brevo server-side ─── */
@@ -1192,7 +1243,7 @@ async function payWithPayPal(pacchetto, amount) {
 
   // Redirect to PayPal
   const note = encodeURIComponent('Rewind Private Club – '+pacchetto+' – '+fullName);
-  const paypalUrl = `https://www.paypal.com/paypalme/dilankamtaouemba/${amount}EUR?note=${note}`;
+  const paypalUrl = `https://www.paypal.me/dilankamtaouemba/${amount}`;
   window.open(paypalUrl, '_blank');
 
   // Show confirm
