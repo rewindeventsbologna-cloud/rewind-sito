@@ -1002,7 +1002,7 @@ async function sendEmail(toEmail, toName, pacchetto, amount, nomeOnly){
       }),
       signal: ctrl.signal
     });
-  } catch(e){ console.warn('sendEmail failed:', e.message); }
+  } catch(e){ console.error('sendEmail failed:', e.message); }
 }
 
 /* INTRO */
@@ -1070,7 +1070,7 @@ document.getElementById('bookForm').addEventListener('submit',async function(e){
   // Salva su Google Sheet e invia email (tutto via GAS)
   await saveBooking({cognome:cogn,nome:nome,email,tel,pacchetto:pack,data:ts,pagato:'No'});
   // Invia email (non bloccante — showConfirm non aspetta)
-  sendEmail(email, fullName, pack, pack.includes('15') ? 15 : 20, nome);
+  await sendEmail(email, fullName, pack, pack.includes('15') ? 15 : 20, nome);
   showConfirm();
 
   try{
@@ -1125,7 +1125,7 @@ async function payWithPayPal(pacchetto, amount) {
   // Save booking
   await saveBooking({cognome:cogn,nome:nome,email,tel,pacchetto,data:ts,pagato:'No'});
   // Invia email conferma
-  sendEmail(email, fullName, pacchetto, amount, nome);
+  await sendEmail(email, fullName, pacchetto, amount, nome);
 
   // Send confirmation email
   try {
