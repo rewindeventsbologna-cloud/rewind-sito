@@ -964,8 +964,8 @@ const GAS_URL = 'https://script.google.com/macros/s/AKfycby7nQ-jCiey4WeuoeHUAcld
 async function saveBooking(d){
   try {
     const ctrl = new AbortController();
-    setTimeout(()=>ctrl.abort(), 8000);
-    await fetch(GAS_URL, {
+    setTimeout(()=>ctrl.abort(), 15000);
+    const resp = await fetch(GAS_URL, {
       method:  'POST',
       headers: {'Content-Type':'text/plain'},
       body: JSON.stringify({
@@ -980,7 +980,9 @@ async function saveBooking(d){
       }),
       signal: ctrl.signal
     });
-  } catch(e){ console.warn('GAS write failed:', e.message); }
+    const json = await resp.json();
+    console.log('GAS response:', JSON.stringify(json));
+  } catch(e){ console.error('GAS saveBooking failed:', e.message); }
 }
 
 /* ─── sendEmail: chiama GAS che invia via Brevo server-side ─── */
@@ -1068,9 +1070,8 @@ document.getElementById('bookForm').addEventListener('submit',async function(e){
   status.className='f-status sending';status.textContent='Invio email in corso…';status.style.display='block';
 
   // Salva su Google Sheet e invia email (tutto via GAS)
+  // saveBooking salva su GAS che invia anche l'email automaticamente
   await saveBooking({cognome:cogn,nome:nome,email,tel,pacchetto:pack,data:ts,pagato:'No'});
-  // Invia email (non bloccante — showConfirm non aspetta)
-  await sendEmail(email, fullName, pack, pack.includes('15') ? 15 : 20, nome);
   showConfirm();
 
   try{
@@ -1125,7 +1126,7 @@ async function payWithPayPal(pacchetto, amount) {
   // Save booking
   await saveBooking({cognome:cogn,nome:nome,email,tel,pacchetto,data:ts,pagato:'No'});
   // Invia email conferma
-  await sendEmail(email, fullName, pacchetto, amount, nome);
+  // email inviata da GAS inside saveBooking
 
   // Send confirmation email
   try {
