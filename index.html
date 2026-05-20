@@ -1029,12 +1029,17 @@ let SITE_CFG = {
 
 async function loadConfig() {
   try {
-    const r = await fetch(GAS_URL + '?action=getConfig&_t=' + Date.now(), {cache:'no-store'});
+    const r = await fetch(GAS_URL + '?action=getConfig&_t=' + Date.now(), {
+      cache: 'no-store',
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        'Pragma': 'no-cache'
+      }
+    });
     if (!r.ok) return;
     const cfg = await r.json();
     if (cfg.error) return;
     SITE_CFG = {...SITE_CFG, ...cfg};
-    console.log('Config loaded:', JSON.stringify(cfg).substring(0,100));
     applyConfig(cfg);
   } catch(e) {
     console.warn('Config non caricata, uso valori default:', e.message);
@@ -1042,11 +1047,9 @@ async function loadConfig() {
 }
 
 function applyConfig(cfg) {
-  console.log('applyConfig called, prezzo_apericena =', cfg.prezzo_apericena);
   // Aggiorna tutti gli elementi con data-cfg
   document.querySelectorAll('[data-cfg]').forEach(el => {
     const key = el.getAttribute('data-cfg');
-    console.log('Updating', key, '→', cfg[key]);
     if (cfg[key] !== undefined) el.textContent = cfg[key];
   });
 
@@ -1064,6 +1067,8 @@ function applyConfig(cfg) {
 
 // Carica config appena la pagina è pronta
 loadConfig();
+// Ricarica config quando l'utente torna sulla tab
+window.addEventListener('focus', () => loadConfig());
 
 /* ─── saveBooking: scrive su Google Sheet via GAS ─── */
 async function saveBooking(d){
