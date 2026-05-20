@@ -5,10 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>REWIND Private Club</title>
 <meta name="description" content="REWIND Private Club – Bologna.">
+
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap">
 <style>
+
+/* Cormorant Garamond — elegant serif */
+/* Playfair Display */
+/* DM Sans — body text */
 :root{
   --red:     #C8102E;
   --reddark: #A00D25;
@@ -262,12 +269,14 @@ nav.scrolled{
 /* sottile separatore tra sezioni */
 #evento::before,#experience::before,#prenota::before,
 #gallery::before,#about::before,#contatti::before{
-  content:'';display:block;height:1px;
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:1px;
   background:linear-gradient(to right,transparent,rgba(245,239,230,0.15),transparent);
 }
 
 /* variazione tono alternata per non essere piatto */
-#experience,#gallery,#contatti{background:#350011;}
+#experience,#gallery,#contatti{background:#350011;padding:90px 44px;text-align:left;}
 
 /* ===== SHARED TYPOGRAPHY ===== */
 .s-label{font-size:.52rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(245,239,230,0.7);margin-bottom:12px;}
@@ -305,18 +314,13 @@ nav.scrolled{
 /* ===== EXPERIENCE ===== */
 #experience{padding:90px 44px;}
 .exp-inner{max-width:1100px;margin:0 auto;}
-.exp-hdr{text-align:center;margin-bottom:52px;}
+.exp-hdr{text-align:left;margin-bottom:52px;}
 .exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
-.exp-card{
-  background:rgba(0,0,0,0.2);padding:36px 26px;
-  position:relative;overflow:hidden;
-  border:1px solid rgba(201,169,110,0.16);
-  transition:background .4s;
-}
+.exp-card{background:rgba(0,0,0,0.28);padding:36px 26px;position:relative;overflow:hidden;border:1px solid rgba(201,169,110,0.16);transition:background .4s;text-align:left;}
 .exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,rgba(245,239,230,0.1),var(--goldl));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}
 .exp-card:hover::before{transform:scaleX(1);}
 .exp-card:hover{background:rgba(0,0,0,0.22);}
-.exp-num{font-family:var(--FD);font-size:3.5rem;color:rgba(201,169,110,0.15);line-height:1;margin-bottom:16px;transition:color .4s;}
+.exp-num{font-family:var(--FD);font-size:3.5rem;color:rgba(201,169,110,0.15);line-height:1;margin-bottom:16px;transition:color .4s;text-align:left;}
 .exp-card:hover .exp-num{color:rgba(245,239,230,0.15);}
 .exp-ttl{font-family:var(--FP);font-style:italic;font-size:1.35rem;font-weight:400;color:var(--cream);margin-bottom:10px;line-height:1.2;}
 .exp-dsc{font-size:.8rem;line-height:1.82;color:rgba(245,239,230,0.72);}
@@ -335,8 +339,8 @@ nav.scrolled{
   content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
   width:1px;height:52px;background:linear-gradient(to bottom,transparent,rgba(245,239,230,0.3));
 }
-.prenota-wrap{max-width:760px;margin:0 auto;text-align:center;}
-.prenota-sub{font-family:var(--FS);font-style:italic;font-size:1rem;color:rgba(245,239,230,0.75);margin-bottom:42px;}
+.prenota-wrap{max-width:760px;margin:0 auto;text-align:left;}
+.prenota-sub{font-family:var(--FS);font-style:italic;font-size:1rem;color:rgba(245,239,230,0.75);margin-bottom:42px;text-align:left;}
 .ticket-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:36px;text-align:left;}
 .tk-card{
   background:rgba(255,255,255,0.04);padding:26px 20px;
@@ -425,14 +429,9 @@ nav.scrolled{
 .about-team{font-family:var(--FS);font-style:italic;font-size:.9rem;color:rgba(245,239,230,0.55);letter-spacing:.1em;}
 
 /* ===== CONTATTI ===== */
-#contatti{padding:90px 44px;text-align:center;}
-.cont-inner{max-width:600px;margin:0 auto;}
-.cont-links{display:flex;flex-direction:column;gap:10px;align-items:center;margin-top:34px;}
-.cont-link{
-  display:flex;align-items:center;gap:15px;padding:18px 32px;
-  border:1px solid rgba(245,239,230,0.12);width:100%;max-width:380px;
-  transition:border-color .3s,background .3s;position:relative;overflow:hidden;
-}
+.cont-inner{max-width:600px;margin:0 auto;text-align:left;}
+.cont-links{display:flex;flex-direction:column;gap:10px;align-items:flex-start;margin-top:34px;}
+.cont-link{display:flex;align-items:center;gap:15px;padding:18px 32px;border:1px solid rgba(245,239,230,0.12);width:100%;max-width:420px;transition:border-color .3s,background .3s;position:relative;}
 .cont-link::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--cream),var(--goldl));transform:scaleY(0);transition:transform .3s var(--ease);}
 .cont-link:hover{border-color:rgba(245,239,230,0.3);background:rgba(0,0,0,0.1);}
 .cont-link:hover::before{transform:scaleY(1);}
@@ -533,10 +532,8 @@ footer{
 
 /* ─── BACK EVENTS SECTION ─── */
 .back-events-inner{max-width:1100px;margin:0 auto;}
-.back-events-hdr{margin-bottom:48px;}
-.back-events-hdr .s-label{margin-bottom:12px;}
-.back-events-hdr .s-title{font-size:clamp(2rem,4vw,3.8rem);}
-.back-events-sub{font-family:var(--FP);font-style:italic;color:rgba(245,239,230,0.5);font-size:.88rem;margin-top:14px;letter-spacing:.04em;line-height:1.6;}
+.back-events-hdr{margin-bottom:48px;text-align:left;}
+.back-events-hdr .back-events-hdr .back-events-sub{font-family:var(--FP);font-style:italic;color:rgba(245,239,230,0.5);font-size:.88rem;margin-top:14px;letter-spacing:.04em;line-height:1.6;text-align:left;}
 
 .events-grid{
   display:grid;
@@ -545,17 +542,7 @@ footer{
 }
 @media(max-width:640px){.events-grid{grid-template-columns:1fr;gap:12px;}}
 
-.event-folder{
-  display:block;
-  text-decoration:none;
-  background:rgba(0,0,0,0.25);
-  border:1px solid rgba(201,169,110,0.15);
-  padding:36px 32px 32px;
-  position:relative;
-  overflow:hidden;
-  transition:background .3s, border-color .3s, transform .25s;
-  cursor:pointer;
-}
+.event-folder{display:block;text-decoration:none;background:rgba(0,0,0,0.25);border:1px solid rgba(201,169,110,0.15);padding:36px 32px 32px;position:relative;overflow:hidden;transition:background .3s,border-color .3s,transform .25s;cursor:pointer;}
 .event-folder::before{
   content:'';
   position:absolute;inset:0;
@@ -635,6 +622,16 @@ footer{
   color:rgba(245,239,230,0.4);
   padding:4px 10px;border:1px solid rgba(245,239,230,0.1);
 }
+
+.f-gdpr{margin-bottom:18px;}
+.gdpr-label{display:flex;align-items:flex-start;gap:10px;cursor:pointer;}
+.gdpr-label input[type=checkbox]{
+  flex-shrink:0;width:16px;height:16px;margin-top:3px;
+  accent-color:#C9A96E;cursor:pointer;
+}
+.gdpr-label span{font-size:.75rem;line-height:1.6;color:rgba(245,239,230,.55);}
+.gdpr-label a{color:#C9A96E;text-decoration:underline;}
+
 </style>
 </head>
 <body>
@@ -834,6 +831,12 @@ footer{
         </div>
         
       </div>
+        <div class="f-gdpr">
+          <label class="gdpr-label">
+            <input type="checkbox" id="fGdpr" required>
+            <span>Ho letto e accetto la <a href="legal.html#privacy" target="_blank">Privacy Policy</a> e i <a href="legal.html#terms" target="_blank">Termini di Servizio</a>. Acconsento al trattamento dei miei dati per la gestione della prenotazione.</span>
+          </label>
+        </div>
         <div class="f-status" id="fStatus"></div>
         <button type="submit" class="f-submit" id="fBtn">Invia richiesta di prenotazione →</button>
       </form>
@@ -917,7 +920,24 @@ footer{
   <div class="ft-word">REWIND</div>
   <p class="ft-tag">Rewind, il tempo torna solo per chi sa viverlo.</p>
   <p class="ft-legal">© 2026 REWIND Private Club · Bologna · Tutti i diritti riservati</p>
-  <a href="staff.html" style="font-size:.42rem;letter-spacing:.18em;color:rgba(245,239,230,.15);text-transform:uppercase;margin-top:4px;">Staff Area</a>
+
+  <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(245,239,230,0.06);
+    text-align:center;font-family:'DM Sans',sans-serif;font-size:.62rem;
+    color:rgba(245,239,230,0.25);letter-spacing:.08em;display:flex;
+    flex-wrap:wrap;justify-content:center;gap:12px 20px;">
+    <a href="legal.html#privacy" style="color:rgba(245,239,230,0.35);text-decoration:none;"
+       onmouseover="this.style.color='rgba(245,239,230,0.7)'"
+       onmouseout="this.style.color='rgba(245,239,230,0.35)'">Privacy</a>
+    <a href="legal.html#terms" style="color:rgba(245,239,230,0.35);text-decoration:none;"
+       onmouseover="this.style.color='rgba(245,239,230,0.7)'"
+       onmouseout="this.style.color='rgba(245,239,230,0.35)'">Termini</a>
+    <a href="legal.html#cookie" style="color:rgba(245,239,230,0.35);text-decoration:none;"
+       onmouseover="this.style.color='rgba(245,239,230,0.7)'"
+       onmouseout="this.style.color='rgba(245,239,230,0.35)'">Cookie</a>
+    <button id="ck-settings-link" onclick="localStorage.removeItem('rw_cookie_consent');location.reload()">
+      Gestisci cookie
+    </button>
+  </div>
 </footer>
 
 <script>
@@ -938,18 +958,18 @@ const emailTpl = (nome, pacchetto, amount=20) => `<div style="font-family:Georgi
    5. Sostituisci qmbqxfwwfh1ip qui sotto con il tuo ID
    ═══════════════════════════════════════ */
 
-const GAS_URL   = 'https://script.google.com/macros/s/AKfycby7nQ-jCiey4WeuoeHUAcldl_0ZBRuSk7Po81JXmdFmNujzNs98HWzJDDGQqw4Hrps0/exec';
-const BREVO_KEY = 'xkeysib-9c0d'+'68a8cff8609de6e9fd'+'55890da02fde32cd71ffc5e33'+'348e9d44394a79b01-9VnAAjUtMK1CUEQO';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycby7nQ-jCiey4WeuoeHUAcldl_0ZBRuSk7Po81JXmdFmNujzNs98HWzJDDGQqw4Hrps0/exec';
 
-/* Salva la prenotazione sul Google Sheet via GAS */
+/* ─── saveBooking: scrive su Google Sheet via GAS ─── */
 async function saveBooking(d){
   try {
     const ctrl = new AbortController();
-    setTimeout(() => ctrl.abort(), 8000); // timeout 8s
+    setTimeout(()=>ctrl.abort(), 8000);
     await fetch(GAS_URL, {
       method:  'POST',
       headers: {'Content-Type':'text/plain'},
-      body:    JSON.stringify({
+      body: JSON.stringify({
+        action:    'addRow',
         cognome:   d.cognome   || '',
         nome:      d.nome      || '',
         email:     d.email     || '',
@@ -960,37 +980,29 @@ async function saveBooking(d){
       }),
       signal: ctrl.signal
     });
-  } catch(e){ console.warn('GAS write failed (non bloccante):', e.message); }
+  } catch(e){ console.warn('GAS write failed:', e.message); }
 }
 
-/* Invia email di conferma al cliente via Brevo */
+/* ─── sendEmail: chiama GAS che invia via Brevo server-side ─── */
+/* La chiave Brevo è nel Google Apps Script, MAI nel frontend  */
 async function sendEmail(toEmail, toName, pacchetto, amount, nomeOnly){
   try {
     const ctrl = new AbortController();
-    setTimeout(() => ctrl.abort(), 10000); // timeout 10s
-    const body = emailTpl(nomeOnly || toName.split(' ')[0] || toName, pacchetto, amount);
-    const payload = {
-      sender:     { name: 'Rewind Private Club', email: 'rewindeventsbologna@gmail.com' },
-      to:         [{ email: toEmail, name: toName }],
-      subject:    '✓ Prenotazione ricevuta — REWIND Colli Edition',
-      htmlContent: body
-    };
-    const r = await fetch('https://api.brevo.com/v3/smtp/email', {
+    setTimeout(()=>ctrl.abort(), 12000);
+    await fetch(GAS_URL, {
       method:  'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key':       BREVO_KEY
-      },
-      body:   JSON.stringify(payload),
+      headers: {'Content-Type':'text/plain'},
+      body: JSON.stringify({
+        action:    'sendEmail',
+        email:     toEmail,
+        nome:      nomeOnly || toName.split(' ')[0] || toName,
+        fullName:  toName,
+        pacchetto: pacchetto,
+        importo:   amount || 20
+      }),
       signal: ctrl.signal
     });
-    if (!r.ok) {
-      const t = await r.text();
-      console.warn('Brevo error:', r.status, t.substring(0,100));
-    } else {
-      console.log('Email inviata a', toEmail);
-    }
-  } catch(e){ console.warn('sendEmail failed (non bloccante):', e.message); }
+  } catch(e){ console.warn('sendEmail failed:', e.message); }
 }
 
 /* INTRO */
@@ -1142,5 +1154,87 @@ async function payWithPayPal(pacchetto, amount) {
 }
 
 </script>
+
+<!-- ═══════════════════════════════════════
+     COOKIE BANNER — GDPR compliant
+═══════════════════════════════════════ -->
+<style>
+#ck-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:99999;
+  background:#1a0008;border-top:1px solid rgba(201,169,110,0.25);
+  padding:18px 24px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+  font-family:'DM Sans',sans-serif;font-size:.78rem;
+  color:rgba(245,239,230,0.75);line-height:1.6;
+  transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+#ck-banner.show{transform:translateY(0);}
+#ck-banner p{flex:1;min-width:200px;margin:0;}
+#ck-banner a{color:#C9A96E;text-decoration:underline;}
+.ck-btns{display:flex;gap:8px;flex-shrink:0;}
+.ck-btn{
+  padding:9px 18px;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  border-radius:2px;transition:opacity .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.ck-btn:hover{opacity:.85;}
+.ck-accept{background:#F5EFE6;color:#1a0008;}
+.ck-reject{background:rgba(245,239,230,0.08);color:rgba(245,239,230,0.6);border:1px solid rgba(245,239,230,0.15);}
+@media(max-width:480px){
+  #ck-banner{padding:16px 16px 20px;}
+  .ck-btns{width:100%;justify-content:stretch;}
+  .ck-btn{flex:1;text-align:center;}
+}
+/* Cookie settings link in footer */
+#ck-settings-link{
+  font-size:.65rem;color:rgba(245,239,230,0.35);
+  text-decoration:underline;cursor:pointer;
+  font-family:'DM Sans',sans-serif;letter-spacing:.05em;
+  background:none;border:none;padding:0;
+}
+#ck-settings-link:hover{color:rgba(245,239,230,0.6);}
+</style>
+
+<div id="ck-banner" role="dialog" aria-label="Cookie consent">
+  <p>
+    Questo sito usa cookie tecnici necessari al funzionamento e, con il tuo consenso, Google Fonts per la tipografia.
+    Nessun cookie di profilazione o tracciamento. 
+    <a href="legal.html#cookie" target="_blank">Cookie Policy</a> · 
+    <a href="legal.html#privacy" target="_blank">Privacy Policy</a>
+  </p>
+  <div class="ck-btns">
+    <button class="ck-btn ck-reject" onclick="ckReject()">Solo necessari</button>
+    <button class="ck-btn ck-accept" onclick="ckAccept()">Accetta</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const CONSENT_KEY = 'rw_cookie_consent';
+
+  function ckAccept(){
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    document.getElementById('ck-banner').classList.remove('show');
+  }
+
+  function ckReject(){
+    localStorage.setItem(CONSENT_KEY, 'rejected');
+    document.getElementById('ck-banner').classList.remove('show');
+  }
+
+  window.ckAccept = ckAccept;
+  window.ckReject = ckReject;
+
+  const existing = localStorage.getItem(CONSENT_KEY);
+  if(!existing){
+    setTimeout(()=>{
+      document.getElementById('ck-banner').classList.add('show');
+    }, 800);
+  }
+})();
+</script>
+
 </body>
 </html>
