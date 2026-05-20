@@ -2,6 +2,11 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/webp" href="data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABwBQCdASogACAAPmUmkEWkIiGb/VQAQAZEsoAB8Y0G/zMx/G8nZXqHrmxH+NDKuZ+eTEDiAP79mhsTJIoU0Y5T0UD3ilsrNehpp1WpVnJOKydy8f/ih5rewdqW8BMxIZzJ9Jr1G8gGIJ39RDpA7Sr9ImxXByS0cLY3xazTP8KsszpPjoo1741AVMy5kHxK1bZC9Mi/XLFf1yeS9TSE3wncxkzgDqnlpzYFDvCPndOQzVtp9WtxTyiHDKOtmjE63M774ERhAAA=">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="theme-color" content="#3D0014">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>REWIND Private Club</title>
 <meta name="description" content="REWIND Private Club – Bologna.">
@@ -260,7 +265,7 @@ nav.scrolled{
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
 
 /* ===== SEZIONI — sfondo rosso #C8102E ===== */
-#evento,#experience,#prenota,#gallery,#about,#contatti{
+#evento,#experience,#prenota,#gallery,#about,#community,#contatti{
   background: #3D0014;
   position:relative;
 }
@@ -268,7 +273,7 @@ nav.scrolled{
 #experience{ background:#120005; }
 /* sottile separatore tra sezioni */
 #evento::before,#experience::before,#prenota::before,
-#gallery::before,#about::before,#contatti::before{
+#gallery::before,#about::before,#community::before,#contatti::before{
   content:'';
   position:absolute;top:0;left:0;right:0;
   height:1px;
@@ -276,7 +281,7 @@ nav.scrolled{
 }
 
 /* variazione tono alternata per non essere piatto */
-#experience,#gallery,#contatti{background:#350011;padding:90px 44px;text-align:left;}
+#experience,#gallery,#contatti{background:#350011;padding:90px 44px;text-align:center;}
 
 /* ===== SHARED TYPOGRAPHY ===== */
 .s-label{font-size:.52rem;letter-spacing:.5em;text-transform:uppercase;color:rgba(245,239,230,0.7);margin-bottom:12px;}
@@ -286,7 +291,7 @@ nav.scrolled{
 .r2{transition-delay:.16s;}.r3{transition-delay:.28s;}
 
 /* ===== NEXT EVENT ===== */
-#evento{padding:90px 44px;}
+#evento,#community{padding:90px 44px;}
 .evento-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
 .evento-date{font-family:var(--FP);font-style:italic;font-size:clamp(1rem,2vw,1.55rem);font-weight:400;color:var(--goldl);margin-bottom:22px;}
 .ev-rows{display:flex;flex-direction:column;gap:14px;}
@@ -430,7 +435,7 @@ nav.scrolled{
 
 /* ===== CONTATTI ===== */
 .cont-inner{max-width:600px;margin:0 auto;text-align:left;}
-.cont-links{display:flex;flex-direction:column;gap:10px;align-items:flex-start;margin-top:34px;}
+.cont-links{display:flex;flex-direction:column;gap:10px;align-items:center;margin-top:34px;}
 .cont-link{display:flex;align-items:center;gap:15px;padding:18px 32px;border:1px solid rgba(245,239,230,0.12);width:100%;max-width:420px;transition:border-color .3s,background .3s;position:relative;}
 .cont-link::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--cream),var(--goldl));transform:scaleY(0);transition:transform .3s var(--ease);}
 .cont-link:hover{border-color:rgba(245,239,230,0.3);background:rgba(0,0,0,0.1);}
@@ -459,7 +464,8 @@ footer{
   .hamburger{display:flex;}
   .evento-inner,.about-inner{grid-template-columns:1fr;gap:34px;}
   .about-r{display:none;}
-  #evento,#experience,#prenota,#gallery,#about,#contatti{padding:70px 20px;}
+  #evento,#experience,#prenota,#gallery,#about,#community,#contatti{padding:70px 20px;}
+  .events-grid{grid-template-columns:1fr;}
   .exp-grid{grid-template-columns:1fr;gap:2px;}
   .ticket-grid{grid-template-columns:1fr;gap:3px;}
   .f-row{grid-template-columns:1fr;}
@@ -533,16 +539,17 @@ footer{
 /* ─── BACK EVENTS SECTION ─── */
 .back-events-inner{max-width:1100px;margin:0 auto;}
 .back-events-hdr{margin-bottom:48px;text-align:left;}
-.back-events-hdr .back-events-hdr .back-events-sub{font-family:var(--FP);font-style:italic;color:rgba(245,239,230,0.5);font-size:.88rem;margin-top:14px;letter-spacing:.04em;line-height:1.6;text-align:left;}
+.back-events-sub{font-family:var(--FS);font-style:italic;font-size:1rem;color:rgba(245,239,230,0.75);margin-top:14px;line-height:1.8;text-align:left;}
 
 .events-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:16px;
+  text-align:left;
 }
 @media(max-width:640px){.events-grid{grid-template-columns:1fr;gap:12px;}}
 
-.event-folder{display:block;text-decoration:none;background:rgba(0,0,0,0.25);border:1px solid rgba(201,169,110,0.15);padding:36px 32px 32px;position:relative;overflow:hidden;transition:background .3s,border-color .3s,transform .25s;cursor:pointer;}
+.event-folder{display:block;text-decoration:none;text-align:left;background:rgba(0,0,0,0.25);border:1px solid rgba(201,169,110,0.15);padding:36px 32px 32px;position:relative;overflow:hidden;transition:background .3s,border-color .3s,transform .25s;cursor:pointer;}
 .event-folder::before{
   content:'';
   position:absolute;inset:0;
@@ -632,6 +639,28 @@ footer{
 .gdpr-label span{font-size:.75rem;line-height:1.6;color:rgba(245,239,230,.55);}
 .gdpr-label a{color:#C9A96E;text-decoration:underline;}
 
+
+/* ─── COMMUNITY SECTION ─── */
+.community-inner{ max-width:1100px; margin:0 auto; }
+.community-sub{
+  font-family:var(--FS);font-style:italic;
+  font-size:1rem;color:rgba(245,239,230,0.75);
+  margin-bottom:42px;line-height:1.8;text-align:left;
+}
+.community-btn{
+  display:inline-flex;align-items:center;gap:14px;
+  padding:18px 32px;
+  background:none;
+  color:rgba(245,239,230,0.85);
+  border:1px solid rgba(245,239,230,0.2);
+  text-decoration:none;
+  font-family:'DM Sans',sans-serif;
+  font-size:.52rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;
+  transition:border-color .3s,color .3s,background .3s;
+  position:relative;
+}
+.community-btn:hover{border-color:rgba(245,239,230,0.5);color:#F5EFE6;background:rgba(245,239,230,0.04);}
+
 </style>
 </head>
 <body>
@@ -658,6 +687,7 @@ footer{
   <a href="#prenota" onclick="cMob()">Prenota</a>
   <a href="#gallery" onclick="cMob()">Back Events</a>
   <a href="#about" onclick="cMob()">Chi siamo</a>
+  <a href="#community" onclick="cMob()">Community</a>
   <a href="#contatti" onclick="cMob()">Contatti</a>
 </div>
 
@@ -691,6 +721,7 @@ footer{
       </div>
     </li>
     <li><a href="#about">Chi siamo</a></li>
+    <li><a href="#community">Community</a></li>
     <li><a href="#contatti">Contatti</a></li>
   </ul>
   <a href="#prenota" class="nav-cta">Prenota ora</a>
@@ -866,7 +897,7 @@ footer{
          target="_blank" rel="noopener">
         <span class="ef-num">01</span>
         <span class="ef-icon">📁</span>
-        <div class="ef-date">01 Maggio 2025</div>
+        <div class="ef-date">01 Maggio 2026</div>
         <div class="ef-name">Sette Camini</div>
         <div class="ef-desc">La nostra cena spettacolo + dj set tra i colli bolognesi.</div>
         <span class="ef-arrow">Vedi foto →</span>
@@ -902,6 +933,26 @@ footer{
 </section>
 
 <!-- CONTATTI -->
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="community-inner">
+    <div class="reveal">
+      <p class="s-label">Community</p>
+      <h2 class="s-title">Entra nella<br>nostra community.</h2>
+      <p class="community-sub reveal">Entra nella nostra community per non perderti nessuna novità e per avere sconti esclusivi.</p>
+      <a class="community-btn reveal"
+         href="https://chat.whatsapp.com/Gut8gXRGJ2G3fXGKPB1N3D"
+         target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Unisciti alla Community WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
 <section id="contatti">
   <div class="cont-inner">
     <p class="s-label reveal">Contatti</p>
