@@ -1120,6 +1120,17 @@ async function payWithPayPal(pacchetto, amount) {
     document.getElementById('fNome').focus();
     return;
   }
+
+  // Verifica accettazione Privacy Policy
+  const gdpr = document.getElementById('fGdpr');
+  if(gdpr && !gdpr.checked) {
+    gdpr.closest('.f-gdpr').style.outline = '2px solid rgba(200,16,46,0.6)';
+    gdpr.closest('.f-gdpr').style.borderRadius = '3px';
+    setTimeout(()=>{ gdpr.closest('.f-gdpr').style.outline = ''; }, 2500);
+    alert('Accetta la Privacy Policy e i Termini di Servizio per procedere con il pagamento.');
+    gdpr.closest('.f-gdpr').scrollIntoView({behavior:'smooth', block:'center'});
+    return;
+  }
   const fullName = nome+' '+cogn;
   const ts = new Date().toLocaleString('it-IT');
 
