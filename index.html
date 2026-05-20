@@ -514,22 +514,7 @@ footer{
   box-shadow:0 4px 20px rgba(21,101,168,0.35);
 }
 .paypal-apericena:hover{background:#0d4f8a;transform:translateY(-1px);box-shadow:0 8px 28px rgba(21,101,168,0.45);}
-.paypal-djset{
-  background:#1A7D6F;color:#fff;
-  box-shadow:0 4px 20px rgba(26,125,111,0.35);
-}
-.paypal-djset:hover{background:#136057;transform:translateY(-1px);box-shadow:0 8px 28px rgba(26,125,111,0.45);}
-.paypal-or{
-  text-align:center;margin:14px 0 10px;
-  position:relative;
-}
-.paypal-or::before,.paypal-or::after{
-  content:'';position:absolute;top:50%;width:30%;height:1px;
-  background:rgba(245,239,230,0.12);
-}
-.paypal-or::before{left:0;} .paypal-or::after{right:0;}
 .paypal-or span{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,239,230,0.35);}
-.paypal-alt{font-size:.72rem;color:rgba(245,239,230,0.5);text-align:center;line-height:1.7;}
 .paypal-alt strong{color:rgba(245,239,230,0.75);}
 @media(max-width:480px){
   .paypal-btn{font-size:.58rem;padding:13px 14px;}
@@ -814,14 +799,14 @@ footer{
     <div class="ticket-grid reveal">
       <div class="tk-card feat">
         <div class="tk-name">Pacchetto completo · First Release</div>
-        <div class="tk-ttl" data-cfg="titolo_pacchetto1">Apericena + DJ Set</div>
-        <div class="tk-price"><sup>€</sup><span data-cfg="prezzo_apericena">20</span></div>
+        <div class="tk-ttl">Apericena + DJ Set</div>
+        <div class="tk-price"><sup>€</sup>20</div>
         <ul class="tk-list"><li>1 calice di vino o 1 bicchiere di birra</li><li>Apericena e DJ Set</li><li>Live Performance a sorpresa</li></ul>
       </div>
       <div class="tk-card">
         <div class="tk-name">First Release</div>
-        <div class="tk-ttl" data-cfg="titolo_pacchetto2">Solo DJ Set</div>
-        <div class="tk-price"><sup>€</sup><span data-cfg="prezzo_dj">15</span></div>
+        <div class="tk-ttl">Solo DJ Set</div>
+        <div class="tk-price"><sup>€</sup>15</div>
         <ul class="tk-list"><li>DJ set con un calice di vino o un bicchiere di birra</li><li>Accesso area club</li><li>Disponibilità limitata</li></ul>
       </div>
     </div>
@@ -838,8 +823,8 @@ footer{
           <label class="f-lbl">Pacchetto scelto</label>
           <select class="f-sel" id="fPack" required>
             <option value="" disabled selected>Seleziona il pacchetto</option>
-            <option data-cfg-option="apericena" value="Apericena + DJ Set — €20">🍷 &nbsp;Apericena + DJ Set — €20</option>
-            <option data-cfg-option="dj" value="Solo DJ Set — €15">🎵 &nbsp;Solo DJ Set — €15</option>
+            <option value="Apericena + DJ Set — €20">🍷 &nbsp;Apericena + DJ Set — €20</option>
+            <option value="Solo DJ Set — €15">🎵 &nbsp;Solo DJ Set — €15</option>
           </select>
         </div>
         <!-- hidden fields for formsubmit -->
@@ -851,13 +836,9 @@ footer{
         <div class="paypal-label">Paga ora con PayPal</div>
         <p class="paypal-note">Completa il pagamento direttamente da qui. Dopo il pagamento riceverai la conferma via email.</p>
         <div class="paypal-options">
-          <button type="button" class="paypal-btn paypal-apericena" onclick="payWithPayPal(document.querySelector('[data-cfg-option="apericena"]')?.value || 'Apericena + DJ Set — €20', SITE_CFG.prezzo_apericena || 20)">
+          <button type="button" class="paypal-btn paypal-apericena" onclick="payWithPayPal(document.getElementById('fPack').value, document.getElementById('fPack').value.includes('15') ? 15 : 20)">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788l.038-.196.725-4.591.047-.254c.072-.454.461-.788.922-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.714-4.52z"/></svg>
-            Paga €20 — Apericena + DJ Set
-          </button>
-          <button type="button" class="paypal-btn paypal-djset" onclick="payWithPayPal(document.querySelector('[data-cfg-option="dj"]')?.value || 'Solo DJ Set — €15', SITE_CFG.prezzo_dj || 15)">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.93 4.778-4.005 7.201-9.138 7.201h-2.19a.563.563 0 0 0-.556.479l-1.187 7.527h-.506l-.24 1.516a.56.56 0 0 0 .554.647h3.882c.46 0 .85-.334.922-.788l.038-.196.725-4.591.047-.254c.072-.454.461-.788.922-.788h.58c3.76 0 6.705-1.528 7.565-5.946.36-1.847.174-3.388-.714-4.52z"/></svg>
-            Paga €15 — Solo DJ Set
+            Paga con PayPal
           </button>
         </div>
         
@@ -1011,64 +992,7 @@ const emailTpl = (nome, pacchetto, amount=20) => `<div style="font-family:Georgi
 
 const GAS_URL = 'https://script.google.com/macros/s/AKfycby7nQ-jCiey4WeuoeHUAcldl_0ZBRuSk7Po81JXmdFmNujzNs98HWzJDDGQqw4Hrps0/exec';
 
-/* ═══════════════════════════════════════════════════
-   CONFIG CENTRALIZZATA — legge prezzi e dati dal GAS
-   Per modificare prezzi/date: vai su Google Sheets
-   → tab "config" → modifica il valore → salva
-   Il sito si aggiorna automaticamente al prossimo caricamento
-═══════════════════════════════════════════════════ */
-let SITE_CFG = {
-  prezzo_apericena: 20,
-  prezzo_dj:        15,
-  data_evento:      '2 Giugno 2026',
-  nome_evento:      'Colli Edition',
-  location:         'Sette Camini Food & Spirits, Bologna',
-  titolo_pacchetto1:'Apericena + DJ Set',
-  titolo_pacchetto2:'Solo DJ Set',
-};
 
-async function loadConfig() {
-  try {
-    const r = await fetch(GAS_URL + '?action=getConfig&_t=' + Date.now(), {
-      cache: 'no-store',
-      headers: {
-        'Cache-Control': 'no-cache, no-store, must-revalidate',
-        'Pragma': 'no-cache'
-      }
-    });
-    if (!r.ok) return;
-    const cfg = await r.json();
-    if (cfg.error) return;
-    SITE_CFG = {...SITE_CFG, ...cfg};
-    applyConfig(cfg);
-  } catch(e) {
-    console.warn('Config non caricata, uso valori default:', e.message);
-  }
-}
-
-function applyConfig(cfg) {
-  // Aggiorna tutti gli elementi con data-cfg
-  document.querySelectorAll('[data-cfg]').forEach(el => {
-    const key = el.getAttribute('data-cfg');
-    if (cfg[key] !== undefined) el.textContent = cfg[key];
-  });
-
-  // Aggiorna prezzi nelle option del form e i loro value
-  document.querySelectorAll('[data-cfg-option]').forEach(opt => {
-    const type = opt.getAttribute('data-cfg-option');
-    const prezzo = type === 'apericena' ? cfg.prezzo_apericena : cfg.prezzo_dj;
-    const titolo = type === 'apericena' ? (cfg.titolo_pacchetto1||'Apericena + DJ Set') : (cfg.titolo_pacchetto2||'Solo DJ Set');
-    const icon   = type === 'apericena' ? '🍷' : '🎵';
-    const newVal = titolo + ' — €' + prezzo;
-    opt.value       = newVal;
-    opt.textContent = icon + '  ' + newVal;
-  });
-}
-
-// Carica config appena la pagina è pronta
-loadConfig();
-// Ricarica config quando l'utente torna sulla tab
-window.addEventListener('focus', () => loadConfig());
 
 /* ─── saveBooking: scrive su Google Sheet via GAS ─── */
 async function saveBooking(d){
@@ -1085,7 +1009,7 @@ async function saveBooking(d){
         email:     d.email     || '',
         telefono:  d.tel       || '',
         pacchetto: d.pacchetto || '',
-        importo:   d.pacchetto && d.pacchetto.includes(String(SITE_CFG.prezzo_dj||15)) ? (SITE_CFG.prezzo_dj||15) : (SITE_CFG.prezzo_apericena||20),
+        importo:   d.pacchetto && d.pacchetto.includes('15') ? 15 : 20,
         data:      d.data      || new Date().toLocaleString('it-IT')
       }),
       signal: ctrl.signal
