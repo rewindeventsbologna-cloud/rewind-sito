@@ -353,7 +353,7 @@ nav.scrolled{
   transition:border-color .3s,background .3s;position:relative;overflow:hidden;
 }
 .tk-card:hover{border-color:rgba(245,239,230,0.35);background:rgba(0,0,0,0.26);}
-.tk-card.feat::after{content:'PROMO';position:absolute;top:10px;right:-14px;background:var(--cream);color:var(--reddeep);font-family:var(--FB);font-size:.38rem;font-weight:700;letter-spacing:.2em;padding:3px 22px;transform:rotate(45deg) translateX(10px);}
+.tk-card.feat::after{content:attr(data-badge);position:absolute;top:10px;right:-14px;background:var(--cream);color:var(--reddeep);font-family:var(--FB);font-size:.38rem;font-weight:700;letter-spacing:.2em;padding:3px 22px;transform:rotate(45deg) translateX(10px);}
 .tk-name{font-size:.48rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,239,230,0.65);margin-bottom:5px;}
 .tk-ttl{font-family:var(--FP);font-style:italic;font-size:1.1rem;font-weight:400;color:var(--cream);margin-bottom:4px;}
 .tk-price{font-family:var(--FD);font-size:2.5rem;color:var(--cream);letter-spacing:.05em;line-height:1;margin-bottom:10px;}
@@ -797,14 +797,14 @@ footer{
     <h2 class="s-title reveal">Assicurati<br>il tuo posto.</h2>
     <p class="prenota-sub reveal">Posti limitati. Compila il form — riceverai via email le istruzioni di pagamento.</p>
     <div class="ticket-grid reveal">
-      <div class="tk-card feat">
-        <div class="tk-name">Pacchetto completo · First Release</div>
+      <div class="tk-card feat" data-badge="CONSIGLIATO">
+        <div class="tk-name" data-cfg="badge_apericena">Pacchetto completo · First Release</div>
         <div class="tk-ttl" data-cfg="titolo_pacchetto1">Apericena + DJ Set</div>
         <div class="tk-price"><sup>€</sup><span data-cfg="prezzo_apericena">20</span></div>
         <ul class="tk-list"><li>1 calice di vino o 1 bicchiere di birra</li><li>Apericena e DJ Set</li><li>Live Performance a sorpresa</li></ul>
       </div>
       <div class="tk-card">
-        <div class="tk-name">First Release</div>
+        <div class="tk-name" data-cfg="badge_dj">First Release</div>
         <div class="tk-ttl" data-cfg="titolo_pacchetto2">Solo DJ Set</div>
         <div class="tk-price"><sup>€</sup><span data-cfg="prezzo_dj">15</span></div>
         <ul class="tk-list"><li>DJ set con un calice di vino o un bicchiere di birra</li><li>Accesso area club</li><li>Disponibilità limitata</li></ul>
@@ -1001,6 +1001,9 @@ let SITE_CFG = {
   prezzo_dj:        15,
   titolo_pacchetto1:'Apericena + DJ Set',
   titolo_pacchetto2:'Solo DJ Set',
+  badge_apericena:  'Pacchetto completo · First Release',
+  badge_dj:         'First Release',
+  badge_consigliato:'CONSIGLIATO',
 };
 
 async function loadConfig() {
@@ -1025,6 +1028,10 @@ function applyConfig(cfg) {
     const key = el.getAttribute('data-cfg');
     if (cfg[key] !== undefined) el.textContent = cfg[key];
   });
+  // Aggiorna badge dinamici (::after content:attr(data-badge))
+  if (cfg.badge_consigliato !== undefined) {
+    document.querySelector('.tk-card.feat')?.setAttribute('data-badge', cfg.badge_consigliato);
+  }
   // Aggiorna options del form dropdown
   document.querySelectorAll('[data-cfg-option]').forEach(opt => {
     const type   = opt.getAttribute('data-cfg-option');
