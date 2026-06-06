@@ -992,6 +992,10 @@ const emailTpl = (nome, pacchetto, amount=20) => `<div style="font-family:Georgi
 
 const GAS_URL = 'https://script.google.com/macros/s/AKfycby7nQ-jCiey4WeuoeHUAcldl_0ZBRuSk7Po81JXmdFmNujzNs98HWzJDDGQqw4Hrps0/exec';
 
+// Flag anti-doppio invio — impedisce registrazioni duplicate
+let _bookingInProgress = false;
+let _bookingDone       = false;  // diventa true dopo il primo invio riuscito
+
 /* ═══ CONFIG DAL GOOGLE SHEET ═══
    Modifica prezzi/dati su Sheets → tab "config"
    Il sito si aggiorna al caricamento
@@ -1158,12 +1162,17 @@ document.getElementById('bookForm').addEventListener('submit',async function(e){
   const fullName=cogn+' '+nome;
   const ts=new Date().toLocaleString('it-IT');
 
+  // Blocca doppio invio
+  if(_bookingInProgress || _bookingDone) return;
+  _bookingInProgress = true;
+
   btn.textContent='Invio in corso...';btn.disabled=true;
   status.className='f-status sending';status.textContent='Invio email in corso…';status.style.display='block';
 
   // Salva su Google Sheet e invia email (tutto via GAS)
-  // saveBooking salva su GAS che invia anche l'email automaticamente
   await saveBooking({cognome:cogn,nome:nome,email,tel,pacchetto:pack,data:ts,pagato:'No'});
+  _bookingDone       = true;
+  _bookingInProgress = false;
   showConfirm();
 
   try{
@@ -1226,8 +1235,15 @@ async function payWithPayPal(pacchetto, amount) {
   const fullName = nome+' '+cogn;
   const ts = new Date().toLocaleString('it-IT');
 
-  // Save booking
+  // Blocca doppio invio — se già registrato non salva di nuovo
+  if(_bookingInProgress || _bookingDone) {
+    window.open('https://www.paypal.me/dilankamtaouemba', '_blank');
+    return;
+  }
+  _bookingInProgress = true;
   await saveBooking({cognome:cogn,nome:nome,email,tel,pacchetto,data:ts,pagato:'No'});
+  _bookingDone       = true;
+  _bookingInProgress = false;
   // Invia email conferma
   // email inviata da GAS inside saveBooking
 
@@ -1250,7 +1266,7 @@ async function payWithPayPal(pacchetto, amount) {
 
   // Redirect to PayPal
   const note = encodeURIComponent('Rewind Private Club – '+pacchetto+' – '+fullName);
-  const paypalUrl = `https://www.paypal.me/dilankamtaouemba/${amount}`;
+  const paypalUrl = 'https://www.paypal.me/dilankamtaouemba';
   window.open(paypalUrl, '_blank');
 
   // Show confirm
