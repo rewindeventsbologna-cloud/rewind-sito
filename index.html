@@ -150,7 +150,7 @@ body::after{
 #intro.animate .intro-center{opacity:1;transform:translateY(0);}
 
 .intro-logo{
-  width:clamp(64px,11vw,96px);
+  width:clamp(80px,14vw,120px);
   filter:drop-shadow(0 0 36px rgba(201,169,110,0.3));
   opacity:0;transform:scale(0.92);
   animation:introLogoIn 1.4s var(--ease) 0.15s forwards;
@@ -161,7 +161,7 @@ body::after{
 }
 
 .intro-word{
-  font-family:var(--FD);font-size:clamp(2.6rem,8vw,5.6rem);
+  font-family:var(--FD);font-size:clamp(3.2rem,10vw,7rem);
   letter-spacing:.42em;color:var(--cream);
   text-indent:.42em; /* compensate letter-spacing */
   opacity:0;
@@ -174,7 +174,7 @@ body::after{
 
 .intro-sub{
   font-family:var(--FS);font-style:italic;
-  font-size:clamp(.7rem,1.3vw,.88rem);
+  font-size:clamp(.88rem,1.6vw,1.1rem);
   color:var(--gold);letter-spacing:.22em;
   opacity:0;
   animation:introFadeIn 1s var(--ease) 0.9s forwards;
@@ -182,7 +182,7 @@ body::after{
 @keyframes introFadeIn{from{opacity:0;}to{opacity:1;}}
 
 .intro-progress{
-  width:min(120px,30vw);height:1px;
+  width:min(150px,37vw);height:1px;
   background:rgba(245,239,230,0.12);
   margin-top:8px;overflow:hidden;
   opacity:0;
