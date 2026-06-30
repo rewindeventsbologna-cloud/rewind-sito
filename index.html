@@ -1168,6 +1168,9 @@ footer{
     <a href="legal.html#cookie" style="color:rgba(245,239,230,0.35);text-decoration:none;"
        onmouseover="this.style.color='rgba(245,239,230,0.7)'"
        onmouseout="this.style.color='rgba(245,239,230,0.35)'">Cookie</a>
+    <button id="ck-settings-link" onclick="localStorage.removeItem('rw_cookie_consent');location.reload()">
+      Gestisci cookie
+    </button>
   </div>
 </footer>
 
@@ -1313,5 +1316,79 @@ function showConfirm() {
   document.getElementById('fConfirm').classList.add('show');
 }
 </script>
+
+<!-- ═══════════════════════════════════════════════════
+     COOKIE BANNER — GDPR compliant
+═══════════════════════════════════════════════════ -->
+<style>
+#ck-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:99999;
+  background:#1a0008;border-top:1px solid rgba(201,169,110,0.25);
+  padding:18px 24px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+  font-family:'DM Sans',sans-serif;font-size:.78rem;
+  color:rgba(245,239,230,0.75);line-height:1.6;
+  transform:translateY(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+#ck-banner.show{transform:translateY(0);}
+#ck-banner p{flex:1;min-width:200px;margin:0;}
+#ck-banner a{color:#C9A96E;text-decoration:underline;}
+.ck-btns{display:flex;gap:8px;flex-shrink:0;}
+.ck-btn{
+  padding:9px 18px;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  border-radius:2px;transition:opacity .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.ck-btn:hover{opacity:.85;}
+.ck-accept{background:#F5EFE6;color:#1a0008;}
+.ck-reject{background:rgba(245,239,230,0.08);color:rgba(245,239,230,0.6);border:1px solid rgba(245,239,230,0.15);}
+@media(max-width:480px){
+  #ck-banner{padding:16px 16px 20px;}
+  .ck-btns{width:100%;justify-content:stretch;}
+  .ck-btn{flex:1;text-align:center;}
+}
+#ck-settings-link{
+  font-size:.62rem;color:rgba(245,239,230,0.25);
+  text-decoration:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;letter-spacing:.08em;
+  background:none;border:none;padding:0;
+}
+#ck-settings-link:hover{color:rgba(245,239,230,0.7);}
+</style>
+
+<div id="ck-banner" role="dialog" aria-label="Cookie notice">
+  <p>
+    Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento (font di sistema esclusi) e Google Fonts per la tipografia.
+    Nessun cookie di profilazione o tracciamento.
+    <a href="legal.html#cookie" target="_blank">Cookie Policy</a> ·
+    <a href="legal.html#privacy" target="_blank">Privacy Policy</a>
+  </p>
+  <div class="ck-btns">
+    <button class="ck-btn ck-accept" onclick="ckAccept()">Ho capito</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  const CONSENT_KEY = 'rw_cookie_consent';
+
+  function ckAccept(){
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    document.getElementById('ck-banner').classList.remove('show');
+  }
+
+  window.ckAccept = ckAccept;
+
+  const existing = localStorage.getItem(CONSENT_KEY);
+  if(!existing){
+    setTimeout(()=>{
+      document.getElementById('ck-banner').classList.add('show');
+    }, 800);
+  }
+})();
+</script>
+
 </body>
 </html>
