@@ -46,11 +46,11 @@ body{
   background:#3D0014;
   color:var(--cream);
   font-family:var(--FB);font-weight:300;
-  overflow-x:hidden;cursor:none;
+  overflow-x:hidden;
 }
 a{color:inherit;text-decoration:none;}
 img{display:block;max-width:100%;}
-button{cursor:none;border:none;background:none;font-family:inherit;}
+button{border:none;background:none;font-family:inherit;}
 select{font-family:inherit;}
 
 /* noise texture */
@@ -61,10 +61,10 @@ body::after{
 }
 
 /* ===== CURSOR ===== */
-.cursor{position:fixed;width:8px;height:8px;background:var(--cream);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s var(--ease),opacity .2s;}
-.cursor-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(245,239,230,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .38s var(--ease),width .28s,height .28s;}
-.cursor.hv{transform:translate(-50%,-50%) scale(2.2);opacity:.35;}
-.cursor-ring.hv{width:52px;height:52px;border-color:rgba(245,239,230,0.6);}
+
+
+
+
 
 /* ===== INTRO — elegante ===== */
 #intro{
@@ -506,9 +506,6 @@ footer{
   
   
   footer{padding:34px 20px 28px;}
-  .cursor,.cursor-ring{display:none;}
-  body{cursor:auto;}
-  button,a,select,.nav-dd-label{cursor:pointer;}
   
   
 }
@@ -821,12 +818,6 @@ footer{
 @media(max-width:900px){
   #evento{ background-attachment: scroll; }
 }
-
-/* ─── Disattiva cursore custom su touch/mobile ─── */
-@media (hover: none), (pointer: coarse){
-  .cursor, .cursor-ring{ display:none !important; }
-  *{ cursor:auto !important; }
-}
 </style>
 <script type="application/ld+json">
 {
@@ -866,9 +857,6 @@ footer{
 </script>
 </head>
 <body>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cring"></div>
-
 
 <!-- INTRO / LOADING -->
 <div id="intro">
@@ -1185,17 +1173,6 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
 },{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-const cur=document.getElementById('cursor'),cring=document.getElementById('cring');
-if(cur&&cring){
-  document.addEventListener('mousemove',e=>{
-    cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
-    setTimeout(()=>{cring.style.left=e.clientX+'px';cring.style.top=e.clientY+'px';},80);
-  });
-  document.querySelectorAll('a,button,.event-folder,.cont-link,.tk-card,.exp-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{cur.classList.add('hv');cring.classList.add('hv');});
-    el.addEventListener('mouseleave',()=>{cur.classList.remove('hv');cring.classList.remove('hv');});
-  });
-}
 
 /* INTRO */
 window.addEventListener('load',()=>{
