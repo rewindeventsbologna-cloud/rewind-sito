@@ -1007,18 +1007,18 @@ footer{
     <div class="form-wrap">
       <form id="bookForm">
         <div class="f-row">
-          <div class="f-grp"><label class="f-lbl">Cognome</label><input class="f-inp" type="text" id="fCogn" placeholder="Il tuo cognome" required></div>
-          <div class="f-grp"><label class="f-lbl">Nome</label><input class="f-inp" type="text" id="fNome" placeholder="Il tuo nome" required></div>
+          <div class="f-grp"><label class="f-lbl" for="fCogn">Cognome</label><input class="f-inp" type="text" id="fCogn" placeholder="Il tuo cognome" required></div>
+          <div class="f-grp"><label class="f-lbl" for="fNome">Nome</label><input class="f-inp" type="text" id="fNome" placeholder="Il tuo nome" required></div>
         </div>
         <div class="f-row">
-          <div class="f-grp"><label class="f-lbl">Email</label><input class="f-inp" type="email" id="fEmail" placeholder="La tua email" required></div>
-          <div class="f-grp"><label class="f-lbl">Telefono</label><input class="f-inp" type="tel" id="fTel" placeholder="Il tuo numero" required></div>
+          <div class="f-grp"><label class="f-lbl" for="fEmail">Email</label><input class="f-inp" type="email" id="fEmail" placeholder="La tua email" required></div>
+          <div class="f-grp"><label class="f-lbl" for="fTel">Telefono</label><input class="f-inp" type="tel" id="fTel" placeholder="Il tuo numero" required></div>
         </div>
 
         <div class="f-gdpr">
           <label class="gdpr-label">
             <input type="checkbox" id="fGdpr" required>
-            <span>Ho letto e accetto la <a href="legal.html#privacy" target="_blank">Privacy Policy</a> e i <a href="legal.html#terms" target="_blank">Termini di Servizio</a>. Acconsento al trattamento dei miei dati per la gestione della prenotazione.</span>
+            <span>Ho letto e accetto la <a href="legal.html#privacy" target="_blank" rel="noopener">Privacy Policy</a> e i <a href="legal.html#terms" target="_blank" rel="noopener">Termini di Servizio</a>. Acconsento al trattamento dei miei dati per la gestione della prenotazione.</span>
           </label>
         </div>
 
@@ -1125,14 +1125,14 @@ footer{
     <p class="s-label reveal">Contatti</p>
     <h2 class="s-title reveal">Scrivici qui.</h2>
     <div class="cont-links reveal">
-      <a href="https://wa.me/393920559059" target="_blank" class="cont-link">
+      <a href="https://wa.me/393920559059" target="_blank" rel="noopener" class="cont-link">
         <div class="cont-ico">💬</div>
         <div>
           <div class="cont-type">WhatsApp</div>
           <div class="cont-val">+39 392 055 9059</div>
         </div>
       </a>
-      <a href="https://www.instagram.com/rewind.eventss" target="_blank" class="cont-link">
+      <a href="https://www.instagram.com/rewind.eventss" target="_blank" rel="noopener" class="cont-link">
         <div class="cont-ico">📸</div>
         <div>
           <div class="cont-type">Instagram</div>
@@ -1356,14 +1356,24 @@ function showConfirm() {
   background:none;border:none;padding:0;
 }
 #ck-settings-link:hover{color:rgba(245,239,230,0.7);}
+
+/* ─── Rispetta la preferenza di sistema "riduci animazioni" ─── */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 </style>
 
 <div id="ck-banner" role="dialog" aria-label="Cookie notice">
   <p>
     Questo sito utilizza esclusivamente cookie tecnici necessari al funzionamento (font di sistema esclusi) e Google Fonts per la tipografia.
     Nessun cookie di profilazione o tracciamento.
-    <a href="legal.html#cookie" target="_blank">Cookie Policy</a> ·
-    <a href="legal.html#privacy" target="_blank">Privacy Policy</a>
+    <a href="legal.html#cookie" target="_blank" rel="noopener">Cookie Policy</a> ·
+    <a href="legal.html#privacy" target="_blank" rel="noopener">Privacy Policy</a>
   </p>
   <div class="ck-btns">
     <button class="ck-btn ck-accept" onclick="ckAccept()">Ho capito</button>
