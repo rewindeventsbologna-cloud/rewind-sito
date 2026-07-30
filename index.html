@@ -352,7 +352,7 @@ nav.scrolled{
 #experience{padding:90px 44px;}
 .exp-inner{max-width:1100px;margin:0 auto;}
 .exp-hdr{text-align:left;margin-bottom:52px;}
-.exp-grid{display:grid;grid-template-columns:1fr;max-width:560px;gap:2px;}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;max-width:900px;gap:2px;}
 .exp-card{background:rgba(0,0,0,0.28);padding:36px 26px;position:relative;overflow:hidden;border:1px solid rgba(201,169,110,0.16);transition:background .4s;text-align:left;}
 .exp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,rgba(245,239,230,0.1),var(--goldl));transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}
 .exp-card:hover::before{transform:scaleX(1);}
@@ -842,8 +842,8 @@ footer{
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "Rewind Private Party — Colli Edition",
-  "startDate": "2026-09-12T21:00",
-  "endDate": "2026-09-13T02:30",
+  "startDate": "2026-09-12T18:00",
+  "endDate": "2026-09-13T02:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
   "location": {
@@ -940,7 +940,7 @@ footer{
       <p class="evento-date">Sabato 12 Settembre 2026</p>
       <div class="ev-rows">
         <div class="ev-row"><div class="ev-icon">📍</div><div><p class="ev-lbl">Location</p><p class="ev-val"><span data-cfg="location">Sette Camini</span> Food &amp; Spirits<br>Bologna – Colli</p></div></div>
-        <div class="ev-row"><div class="ev-icon">🕕</div><div><p class="ev-lbl">Orario</p><p class="ev-val">21:00 – 02:30</p></div></div>
+        <div class="ev-row"><div class="ev-icon">🕕</div><div><p class="ev-lbl">Orario</p><p class="ev-val">18:00 – 02:00</p></div></div>
         <div class="ev-row"><div class="ev-icon">👔</div><div><p class="ev-lbl">Dress Code</p><p class="ev-val">Elegante</p></div></div>
       </div>
       <div class="badge-limited"><div class="badge-dot"></div><span class="badge-txt">Posti limitati — disponibilità in esaurimento</span></div>
@@ -961,17 +961,25 @@ footer{
   <div class="exp-inner">
     <div class="exp-hdr reveal">
       <p class="s-label">L'Esperienza Rewind</p>
-      <h2 class="s-title">Una serata.<br>Da ricordare.</h2>
+      <h2 class="s-title">Programma<br>della serata.</h2>
     </div>
     <div class="exp-grid">
       <div class="exp-card reveal">
-        <h3 class="exp-ttl">DJ Set</h3>
-        <p class="exp-dsc">Tech House e Commercial Tech House in una selezione costruita per accompagnarti per tutta la notte, senza sosta.</p>
+        <h3 class="exp-ttl">🍷 Aperitivo &amp; Tigelle</h3>
+        <p class="exp-dsc">Dalle 18:00 alle 21:00: aperitivo e tigelle salate. La tigella dolce alla Nutella è disponibile per tutta la notte.</p>
+      </div>
+      <div class="exp-card reveal r2">
+        <h3 class="exp-ttl">🎧 DJ Set</h3>
+        <p class="exp-dsc">Dalle 20:00 fino alle 02:00: il ritmo sale, le luci cambiano, la pista si accende. Tech House e Commercial Tech House in una selezione costruita per accompagnarti per tutta la notte, senza sosta.</p>
       </div>
     </div>
+    <div class="soci-notice reveal" style="max-width:900px;margin-top:28px;">
+      <p><strong style="color:#E5C98A;">Aperitivo e tigelle non sono inclusi nella prenotazione</strong> — potrai acquistarli direttamente alla cassa del locale. Tigelle salate dalle 18:00 alle 21:00, tigella dolce alla Nutella disponibile per tutta la notte.</p>
+    </div>
     <div class="tl reveal">
-      <div class="tl-step"><div class="tl-dot">⦿</div><div class="tl-time">21:00</div><div class="tl-lbl">Apertura<br>DJ Set</div></div>
-      <div class="tl-step"><div class="tl-dot">⦿</div><div class="tl-time">02:30</div><div class="tl-lbl">Fine<br>Evento</div></div>
+      <div class="tl-step"><div class="tl-dot">⦿</div><div class="tl-time">18:00</div><div class="tl-lbl">Apertura<br>Aperitivo</div></div>
+      <div class="tl-step"><div class="tl-dot">⦿</div><div class="tl-time">20:00</div><div class="tl-lbl">Inizio<br>DJ Set</div></div>
+      <div class="tl-step"><div class="tl-dot">⦿</div><div class="tl-time">02:00</div><div class="tl-lbl">Fine<br>Evento</div></div>
     </div>
   </div>
 </section>
@@ -988,7 +996,7 @@ footer{
         <div class="tk-name" data-cfg="badge_apericena">Prima Release</div>
         <div class="tk-ttl" data-cfg="titolo_pacchetto1">DJ Set</div>
         <div class="tk-price"><sup>€</sup><span data-cfg="prezzo_apericena">15</span></div>
-        <ul class="tk-list"><li>DJ set con un calice di vino o un bicchiere di birra</li><li>Disponibilità limitata</li></ul>
+        <ul class="tk-list"><li>🎧 DJ Set</li><li>🍷 Un calice di vino</li><li>Disponibilità limitata</li></ul>
       </div>
     </div>
 
@@ -1228,7 +1236,7 @@ let _bookingInProgress = false;
 let _bookingDone = false;
 
 /* ─── COUNTDOWN ─── */
-const evDate = new Date('2026-09-12T21:00:00');
+const evDate = new Date('2026-09-12T18:00:00');
 function tick() {
   const diff = evDate - new Date(); if(diff <= 0) return;
   const d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000),
