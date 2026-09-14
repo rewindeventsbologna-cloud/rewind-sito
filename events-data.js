@@ -33,7 +33,7 @@ const REWIND_EVENTS = [
     // --- locandina ---
     // Metti il file nella cartella "locandine/" e scrivi qui il percorso.
     // Se il file non esiste, la card mostra comunque un segnaposto elegante.
-    image:         'locandine/halloween-2026.jpg',
+    image:         'halloween-2026.jpg',
 
     // --- pagina dedicata (facoltativo) ---
     // Se valorizzato, la card porta a questa pagina invece che a evento.html.
