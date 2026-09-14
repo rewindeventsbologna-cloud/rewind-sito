@@ -14,12 +14,12 @@
 <meta property="og:url" content="https://www.rewindeventss.com/halloween.html">
 <meta property="og:title" content="REWIND HALLOWEEN — 31 Ottobre 2026">
 <meta property="og:description" content="Chiesa sconsacrata, Zola Predosa · 22:00–04:00 · Free Bar · 25 €">
-<meta property="og:image" content="https://www.rewindeventss.com/locandine/halloween-2026.jpg">
+<meta property="og:image" content="https://www.rewindeventss.com/halloween-2026.jpg">
 <meta property="og:site_name" content="Rewind Private Club">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="REWIND HALLOWEEN — 31 Ottobre 2026">
 <meta name="twitter:description" content="Chiesa sconsacrata, Zola Predosa · 22:00–04:00 · Free Bar · 25 €">
-<meta name="twitter:image" content="https://www.rewindeventss.com/locandine/halloween-2026.jpg">
+<meta name="twitter:image" content="https://www.rewindeventss.com/halloween-2026.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap">
@@ -36,7 +36,7 @@
   "endDate":"2026-11-01T04:00",
   "eventStatus":"https://schema.org/EventScheduled",
   "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
-  "image":"https://www.rewindeventss.com/locandine/halloween-2026.jpg",
+  "image":"https://www.rewindeventss.com/halloween-2026.jpg",
   "location":{"@type":"Place","name":"Chiesa sconsacrata","address":{"@type":"PostalAddress","addressLocality":"Zola Predosa","addressRegion":"Emilia-Romagna","addressCountry":"IT"}},
   "organizer":{"@type":"Organization","name":"Rewind Private Club","url":"https://www.rewindeventss.com/"},
   "offers":{"@type":"Offer","price":"25","priceCurrency":"EUR","availability":"https://schema.org/InStock","url":"https://www.rewindeventss.com/halloween.html"}
@@ -45,9 +45,16 @@
 </head>
 <body class="hw-page">
 
-<!-- sfondo immersivo -->
+<!-- sipario d'ingresso: si apre al caricamento -->
+<div class="hw-veil" id="hwVeil" aria-hidden="true"><span></span><span></span></div>
+<!-- grana cinematografica -->
+<div class="hw-grain" aria-hidden="true"></div>
+
+<!-- sfondo immersivo: navata buia, fasci di luce, nebbia, braci -->
 <div class="hw-bg"></div>
+<div class="hw-shafts"></div>
 <div class="hw-fog"></div>
+<div class="hw-embers" id="hwEmbers" aria-hidden="true"></div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobMenu">
@@ -84,23 +91,55 @@
 
     <div class="hw-grid">
 
-      <!-- locandina ufficiale (non alterata) -->
-      <div class="hw-poster">
-        <img src="locandine/halloween-2026.jpg"
-             alt="Locandina ufficiale REWIND HALLOWEEN — 31 ottobre 2026, chiesa sconsacrata, Zola Predosa"
-             width="819" height="1456">
+      <!-- locandina ufficiale dentro un arco gotico (grafica originale) -->
+      <div class="hw-stage">
+
+        <!-- arco a sesto acuto -->
+        <svg class="hw-archsvg" viewBox="0 0 200 300" preserveAspectRatio="none" aria-hidden="true">
+          <path class="a-stroke" d="M4,300 L4,120 Q4,26 100,4 Q196,26 196,120 L196,300"/>
+          <path class="a-inner"  d="M16,300 L16,124 Q16,40 100,20 Q184,40 184,124 L184,300"/>
+        </svg>
+
+        <!-- rosone geometrico -->
+        <svg class="hw-rose" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="56"/>
+          <circle cx="60" cy="60" r="40"/>
+          <circle cx="60" cy="60" r="15"/>
+          <circle cx="60" cy="32" r="12"/><circle cx="60" cy="88" r="12"/>
+          <circle cx="32" cy="60" r="12"/><circle cx="88" cy="60" r="12"/>
+          <circle cx="40" cy="40" r="12"/><circle cx="80" cy="80" r="12"/>
+          <circle cx="80" cy="40" r="12"/><circle cx="40" cy="80" r="12"/>
+          <line x1="60" y1="4" x2="60" y2="116"/><line x1="4" y1="60" x2="116" y2="60"/>
+          <line x1="20" y1="20" x2="100" y2="100"/><line x1="100" y1="20" x2="20" y2="100"/>
+        </svg>
+
+        <!-- candele -->
+        <div class="hw-candles" aria-hidden="true">
+          <div class="hw-candle"><i></i><b></b></div>
+          <div class="hw-candle"><i></i><b></b></div>
+        </div>
+
+        <!-- LOCANDINA: prova più percorsi, così funziona comunque -->
+        <div class="hw-poster">
+          <img id="hwPoster"
+               src="halloween-2026.jpg"
+               data-fallback="locandine/halloween-2026.jpg"
+               alt="Locandina ufficiale REWIND HALLOWEEN — 31 ottobre 2026, chiesa sconsacrata, Zola Predosa"
+               width="819" height="1456">
+        </div>
       </div>
 
       <!-- informazioni -->
       <div>
-        <p class="hw-eyebrow">Private Party Club &nbsp;·&nbsp; Bologna</p>
-        <div class="hw-brand">REWIND</div>
+        <p class="hw-eyebrow hw-rv">Private Party Club &nbsp;·&nbsp; Bologna</p>
+        <div class="hw-brand hw-rv">REWIND</div>
         <h1 class="hw-title">HALLOWEEN</h1>
-        <p class="hw-claim">Venerdì 31 ottobre 2026</p>
+        <p class="hw-claim hw-rv">Sin will find you here</p>
+        <p class="hw-sub hw-rv">Venerdì 31 ottobre 2026</p>
 
-        <div class="hw-rule"></div>
+        <div class="hw-rule hw-rv"></div>
 
-        <div class="hw-facts">
+        <div class="hw-facts hw-rv">
           <div class="hw-fact big">
             <p class="hw-fact-l">Data</p>
             <p class="hw-fact-v">31.10.2026</p>
@@ -123,7 +162,7 @@
           </div>
         </div>
 
-        <div class="hw-ctas">
+        <div class="hw-ctas hw-rv">
           <a href="#prenota" class="hw-btn hw-btn-primary">Prenota ora</a>
           <a href="index.html#prossimi" class="hw-btn hw-btn-ghost">Altri eventi</a>
         </div>
@@ -227,6 +266,82 @@ const hwEv = (typeof rwEventById === 'function' ? rwEventById(HW_ID) : null) || 
   id: HW_ID, title:'REWIND HALLOWEEN', displayDate:'31 Ottobre 2026',
   location:'Chiesa sconsacrata'
 };
+
+/* ─── LOCANDINA: se il primo percorso non esiste, prova il secondo ─── */
+(function(){
+  const img = document.getElementById('hwPoster');
+  if(!img) return;
+  img.addEventListener('error', function onErr(){
+    const alt = img.getAttribute('data-fallback');
+    if(alt && img.src.indexOf(alt) === -1){
+      img.src = alt;                 // secondo tentativo: cartella locandine/
+    }else{
+      img.removeEventListener('error', onErr);
+      img.style.display = 'none';    // niente immagine rotta a schermo
+    }
+  });
+})();
+
+/* ─── BRACI: generate via JS per non appesantire l'HTML ─── */
+(function(){
+  const box = document.getElementById('hwEmbers');
+  if(!box) return;
+  const mobile = window.matchMedia('(max-width:480px)').matches;
+  const n = mobile ? 5 : 14;
+  let html = '';
+  for(let i=0;i<n;i++){
+    const left = Math.random()*100;
+    const dur  = 13 + Math.random()*14;
+    const del  = -Math.random()*dur;
+    const sc   = 0.6 + Math.random()*0.9;
+    html += '<i style="left:'+left.toFixed(2)+'%;animation-duration:'+dur.toFixed(1)+
+            's;animation-delay:'+del.toFixed(1)+'s;transform:scale('+sc.toFixed(2)+')"></i>';
+  }
+  box.innerHTML = html;
+})();
+
+/* ─── ATMOSFERA: sipario, profondità, comparse ─── */
+(function(){
+  const body = document.body;
+
+  /* 1. apertura del sipario */
+  function openVeil(){ body.classList.add('hw-open'); }
+  if(document.readyState === 'complete') setTimeout(openVeil, 260);
+  else window.addEventListener('load', () => setTimeout(openVeil, 260));
+  /* rete di sicurezza: il sipario non deve mai restare chiuso */
+  setTimeout(openVeil, 2600);
+
+  /* 2. comparse progressive, una dopo l'altra */
+  const items = [...document.querySelectorAll('.hw-rv')];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      const i = items.indexOf(e.target);
+      e.target.style.transitionDelay = Math.max(0, i) * 110 + 'ms';
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    });
+  }, {threshold:0.12});
+  items.forEach(el => io.observe(el));
+
+  /* 3. profondità al movimento del mouse (solo puntatore fine) */
+  const stage = document.querySelector('.hw-stage');
+  const fine  = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  const calm  = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(stage && fine && !calm){
+    let raf = null;
+    window.addEventListener('mousemove', ev => {
+      if(raf) return;
+      raf = requestAnimationFrame(() => {
+        const dx = (ev.clientX / window.innerWidth  - .5) * 16;
+        const dy = (ev.clientY / window.innerHeight - .5) * 16;
+        stage.style.setProperty('--px', dx.toFixed(1) + 'px');
+        stage.style.setProperty('--py', dy.toFixed(1) + 'px');
+        raf = null;
+      });
+    }, {passive:true});
+  }
+})();
 
 /* ─── NAV ─── */
 window.addEventListener('scroll',()=>{
