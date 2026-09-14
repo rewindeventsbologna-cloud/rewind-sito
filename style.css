@@ -959,7 +959,7 @@ footer{
 
 /* --- Sezioni multi-evento: padding/sfondo coerenti con le sezioni storiche --- */
 #prossimi{padding:90px 44px;background:#3D0014;position:relative;}
-#format  {padding:90px 44px;background:#120005;position:relative;}
+#format  {padding:90px 44px;background:#3D0014;position:relative;}
 #passati {padding:90px 44px;background:#350011;position:relative;}
 #prossimi::before,#format::before,#passati::before{
   content:'';position:absolute;top:0;left:0;right:0;height:1px;

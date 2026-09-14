@@ -25,25 +25,30 @@ const REWIND_EVENTS = [
     date:          '2026-10-31',          // formato AAAA-MM-GG (serve al sito per capire se è passato)
     displayDate:   '31 Ottobre 2026',     // come viene scritto sul sito
     location:      'Chiesa sconsacrata',
-    locationDetail:'',                    // es. 'Bologna — Centro' (lascia '' se non definito)
+    locationDetail:'Zola Predosa',
 
     // --- etichette mostrate sulla card ---
-    tags:          ['Halloween Party', 'Open Bar'],
+    tags:          ['Halloween Party', 'Free Bar'],
 
     // --- locandina ---
     // Metti il file nella cartella "locandine/" e scrivi qui il percorso.
     // Se il file non esiste, la card mostra comunque un segnaposto elegante.
     image:         'locandine/halloween-2026.jpg',
 
+    // --- pagina dedicata (facoltativo) ---
+    // Se valorizzato, la card porta a questa pagina invece che a evento.html.
+    // Serve per eventi con grafica speciale. Lascia '' per usare la pagina standard.
+    customPage:    'halloween.html',
+
     // --- testo descrittivo (facoltativo) ---
     description:   '',
 
     // --- dettagli: lascia '' finché non li hai definiti ---
-    time:          '',   // es. '22:00 – 04:00'
+    time:          '22:00 – 04:00',
     dressCode:     '',   // es. 'Costume obbligatorio'
     lineup:        '',   // es. 'DJ X · DJ Y'
-    price:         '',   // es. 'Prevendita €20'
-    ingresso:      '',   // es. 'Riservato ai soci · tessera ENAC €5'
+    price:         '25 €',
+    ingresso:      'Free Bar',
 
     // --- programma della serata (facoltativo) ---
     // esempio: [{time:'22:00', label:'Apertura porte'}, {time:'23:00', label:'DJ Set'}]
