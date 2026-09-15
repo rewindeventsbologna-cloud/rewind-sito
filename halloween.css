@@ -112,18 +112,22 @@ body.hw-page #prenota.hw-book{
 .hw-form{display:flex;flex-direction:column;gap:26px;}
 .hw-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .hw-grp{display:flex;flex-direction:column;gap:8px;}
-.hw-lbl{font-family:var(--FB);font-size:.49rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(237,228,216,0.6);}
+.hw-lbl{font-family:var(--FB);font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(237,228,216,0.82);}
 .hw-inp{
-  width:100%;padding:15px 16px;background:rgba(0,0,0,0.55);
-  border:1px solid rgba(201,169,110,0.22);color:var(--hw-bone);
-  font-family:var(--FB);font-size:.92rem;border-radius:0;-webkit-appearance:none;
+  width:100%;padding:16px 16px;
+  /* velo CHIARO: sul fondo quasi nero un riempimento nero spariva */
+  background:rgba(237,228,216,0.06);
+  border:1px solid rgba(201,169,110,0.42);
+  color:var(--hw-bone);
+  font-family:var(--FB);font-size:1rem;border-radius:0;-webkit-appearance:none;
+  box-shadow:inset 0 1px 0 rgba(237,228,216,0.05);
   transition:border-color .3s,background .3s,box-shadow .3s;
 }
-.hw-inp::placeholder{color:rgba(237,228,216,0.28);}
-.hw-inp:focus{outline:none;border-color:rgba(194,51,74,0.8);background:rgba(0,0,0,0.72);box-shadow:0 0 0 3px rgba(126,18,32,0.18);}
+.hw-inp::placeholder{color:rgba(237,228,216,0.50);}
+.hw-inp:focus{outline:none;border-color:var(--hw-ember);background:rgba(237,228,216,0.10);box-shadow:0 0 0 3px rgba(194,51,74,0.25);}
 .hw-gdpr{display:flex;align-items:flex-start;gap:11px;cursor:pointer;}
 .hw-gdpr input{flex-shrink:0;width:17px;height:17px;margin-top:3px;accent-color:var(--hw-blood);cursor:pointer;}
-.hw-gdpr span{font-size:.76rem;line-height:1.7;color:rgba(237,228,216,0.62);}
+.hw-gdpr span{font-size:.78rem;line-height:1.7;color:rgba(237,228,216,0.78);}
 .hw-gdpr a{color:var(--hw-goldl);}
 .hw-status{display:none;padding:13px 16px;font-size:.8rem;text-align:center;border:1px solid transparent;}
 .hw-status.sending{display:block;color:var(--hw-goldl);border-color:rgba(201,169,110,0.3);background:rgba(201,169,110,0.07);}
@@ -151,6 +155,8 @@ body.hw-page footer{background:#050306;border-top:1px solid rgba(201,169,110,0.1
   .hw-grid{grid-template-columns:1fr;gap:44px;}
   
   body.hw-page #prenota.hw-book{padding:74px 20px 86px;}
+  .hw-inp{padding:17px 15px;border-color:rgba(201,169,110,0.5);background:rgba(237,228,216,0.075);}
+  .hw-inp::placeholder{color:rgba(237,228,216,0.58);}
   
   
   
