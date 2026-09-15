@@ -46,15 +46,12 @@
 <body class="hw-page">
 
 <!-- sipario d'ingresso: si apre al caricamento -->
-<div class="hw-veil" id="hwVeil" aria-hidden="true"><span></span><span></span></div>
 <!-- grana cinematografica -->
 <div class="hw-grain" aria-hidden="true"></div>
 
-<!-- sfondo immersivo: navata buia, fasci di luce, nebbia, braci -->
-<div class="hw-bg"></div>
-<div class="hw-shafts"></div>
-<div class="hw-fog"></div>
-<div class="hw-embers" id="hwEmbers" aria-hidden="true"></div>
+<!-- fondale: profondità della navata + alone d'altare (nessun elemento invadente) -->
+<div class="hw-bg" aria-hidden="true"></div>
+<div class="hw-halo" aria-hidden="true"></div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobMenu">
@@ -93,40 +90,15 @@
 
       <!-- locandina ufficiale dentro un arco gotico (grafica originale) -->
       <div class="hw-stage">
-
-        <!-- arco a sesto acuto -->
-        <svg class="hw-archsvg" viewBox="0 0 200 300" preserveAspectRatio="none" aria-hidden="true">
-          <path class="a-stroke" d="M4,300 L4,120 Q4,26 100,4 Q196,26 196,120 L196,300"/>
-          <path class="a-inner"  d="M16,300 L16,124 Q16,40 100,20 Q184,40 184,124 L184,300"/>
-        </svg>
-
-        <!-- rosone geometrico -->
-        <svg class="hw-rose" viewBox="0 0 120 120" aria-hidden="true">
-          <circle cx="60" cy="60" r="56"/>
-          <circle cx="60" cy="60" r="40"/>
-          <circle cx="60" cy="60" r="15"/>
-          <circle cx="60" cy="32" r="12"/><circle cx="60" cy="88" r="12"/>
-          <circle cx="32" cy="60" r="12"/><circle cx="88" cy="60" r="12"/>
-          <circle cx="40" cy="40" r="12"/><circle cx="80" cy="80" r="12"/>
-          <circle cx="80" cy="40" r="12"/><circle cx="40" cy="80" r="12"/>
-          <line x1="60" y1="4" x2="60" y2="116"/><line x1="4" y1="60" x2="116" y2="60"/>
-          <line x1="20" y1="20" x2="100" y2="100"/><line x1="100" y1="20" x2="20" y2="100"/>
-        </svg>
-
-        <!-- candele -->
-        <div class="hw-candles" aria-hidden="true">
-          <div class="hw-candle"><i></i><b></b></div>
-          <div class="hw-candle"><i></i><b></b></div>
-        </div>
-
-        <!-- LOCANDINA: prova più percorsi, così funziona comunque -->
-        <div class="hw-poster">
+        <!-- LOCANDINA: sempre intera, mai ritagliata -->
+        <figure class="hw-poster">
           <img id="hwPoster"
                src="halloween-2026.jpg"
                data-fallback="locandine/halloween-2026.jpg"
                alt="Locandina ufficiale REWIND HALLOWEEN — 31 ottobre 2026, chiesa sconsacrata, Zola Predosa"
                width="819" height="1456">
-        </div>
+        </figure>
+        <div class="hw-reflection" aria-hidden="true"></div>
       </div>
 
       <!-- informazioni -->
@@ -164,7 +136,6 @@
 
         <div class="hw-ctas hw-rv">
           <a href="#prenota" class="hw-btn hw-btn-primary">Prenota ora</a>
-          <a href="index.html#prossimi" class="hw-btn hw-btn-ghost">Altri eventi</a>
         </div>
       </div>
 
@@ -282,36 +253,9 @@ const hwEv = (typeof rwEventById === 'function' ? rwEventById(HW_ID) : null) || 
   });
 })();
 
-/* ─── BRACI: generate via JS per non appesantire l'HTML ─── */
+/* ─── Comparsa in dissolvenza + leggera profondità ─── */
 (function(){
-  const box = document.getElementById('hwEmbers');
-  if(!box) return;
-  const mobile = window.matchMedia('(max-width:480px)').matches;
-  const n = mobile ? 5 : 14;
-  let html = '';
-  for(let i=0;i<n;i++){
-    const left = Math.random()*100;
-    const dur  = 13 + Math.random()*14;
-    const del  = -Math.random()*dur;
-    const sc   = 0.6 + Math.random()*0.9;
-    html += '<i style="left:'+left.toFixed(2)+'%;animation-duration:'+dur.toFixed(1)+
-            's;animation-delay:'+del.toFixed(1)+'s;transform:scale('+sc.toFixed(2)+')"></i>';
-  }
-  box.innerHTML = html;
-})();
-
-/* ─── ATMOSFERA: sipario, profondità, comparse ─── */
-(function(){
-  const body = document.body;
-
-  /* 1. apertura del sipario */
-  function openVeil(){ body.classList.add('hw-open'); }
-  if(document.readyState === 'complete') setTimeout(openVeil, 260);
-  else window.addEventListener('load', () => setTimeout(openVeil, 260));
-  /* rete di sicurezza: il sipario non deve mai restare chiuso */
-  setTimeout(openVeil, 2600);
-
-  /* 2. comparse progressive, una dopo l'altra */
+  /* comparse progressive, una dopo l'altra */
   const items = [...document.querySelectorAll('.hw-rv')];
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {

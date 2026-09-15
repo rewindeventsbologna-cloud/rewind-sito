@@ -24,45 +24,7 @@ body.hw-page{
   background:radial-gradient(78% 62% at 50% 46%, transparent 38%, rgba(0,0,0,0.82) 100%);
 }
 
-/* fasci di luce dalle vetrate */
-.hw-shafts{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.5;}
-.hw-shafts::before,.hw-shafts::after{
-  content:'';position:absolute;top:-30%;width:26vw;height:170%;
-  background:linear-gradient(to bottom, rgba(227,203,153,0.14), transparent 72%);
-  filter:blur(28px);
-}
-.hw-shafts::before{left:4%;transform:rotate(11deg);animation:hwShaft 13s ease-in-out infinite alternate;}
-.hw-shafts::after{right:4%;transform:rotate(-11deg);animation:hwShaft 17s ease-in-out infinite alternate-reverse;}
-@keyframes hwShaft{from{opacity:.45;}to{opacity:.95;}}
-
-/* nebbia bassa */
-.hw-fog{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
-.hw-fog::before{
-  content:'';position:absolute;inset:-25%;opacity:.15;
-  background:
-    radial-gradient(42% 30% at 22% 72%, rgba(237,228,216,0.5) 0%, transparent 70%),
-    radial-gradient(40% 28% at 78% 58%, rgba(194,51,74,0.4) 0%, transparent 70%);
-  filter:blur(58px);will-change:transform;
-  animation:hwDrift 46s ease-in-out infinite alternate;
-}
-@keyframes hwDrift{
-  from{transform:translate3d(-2%,0,0) scale(1);}
-  to{transform:translate3d(2%,-2%,0) scale(1.1);}
-}
-
 /* braci che salgono */
-.hw-embers{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
-.hw-embers i{
-  position:absolute;bottom:-14px;width:3px;height:3px;border-radius:50%;
-  background:var(--hw-ember);box-shadow:0 0 9px 2px rgba(194,51,74,0.85);
-  opacity:0;animation:hwEmber linear infinite;
-}
-@keyframes hwEmber{
-  0%{opacity:0;transform:translateY(0) translateX(0) scale(.6);}
-  12%{opacity:.9;}
-  70%{opacity:.55;}
-  100%{opacity:0;transform:translateY(-92vh) translateX(26px) scale(1.15);}
-}
 
 .hw-wrap{position:relative;z-index:2;}
 
@@ -86,64 +48,6 @@ body.hw-page .mobile-menu{background:rgba(5,3,6,0.985);}
 .hw-back:hover{color:var(--hw-goldl);}
 .hw-grid{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1fr);gap:66px;align-items:center;}
 .hw-grid > *{min-width:0;}
-
-/* 3a. locandina dentro arco gotico */
-.hw-stage{position:relative;display:flex;justify-content:center;align-items:center;padding:5% 11% 0;}
-.hw-archsvg{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:100%;height:100%;z-index:0;pointer-events:none;
-  filter:drop-shadow(0 0 26px rgba(201,169,110,0.16));
-}
-.hw-archsvg .a-stroke{fill:none;stroke:rgba(201,169,110,0.42);stroke-width:1.1;}
-.hw-archsvg .a-inner{fill:none;stroke:rgba(201,169,110,0.16);stroke-width:.7;}
-.hw-rose{
-  position:absolute;left:50%;top:0;transform:translateX(-50%);
-  width:36%;max-width:210px;z-index:0;pointer-events:none;opacity:.45;
-  animation:hwRose 90s linear infinite;
-}
-.hw-rose circle,.hw-rose path,.hw-rose line{fill:none;stroke:rgba(227,203,153,0.55);stroke-width:1;}
-@keyframes hwRose{to{transform:translateX(-50%) rotate(360deg);}}
-
-.hw-poster{
-  position:relative;z-index:2;padding:10px;width:100%;max-width:400px;
-  background:linear-gradient(160deg, rgba(201,169,110,0.24), rgba(126,18,32,0.14));
-  border:1px solid rgba(201,169,110,0.34);
-  box-shadow:0 40px 100px rgba(0,0,0,0.85), 0 0 80px rgba(126,18,32,0.24);
-  animation:hwRise 1.15s cubic-bezier(.16,1,.3,1) both;
-}
-.hw-poster img{display:block;width:100%;height:auto;border:1px solid rgba(0,0,0,0.55);}
-.hw-poster::before{
-  content:'';position:absolute;inset:0;z-index:-1;
-  background:radial-gradient(72% 62% at 50% 50%, rgba(194,51,74,0.45), transparent 76%);
-  filter:blur(36px);animation:hwFlicker 6.5s ease-in-out infinite;
-}
-@keyframes hwFlicker{0%,100%{opacity:.72;}45%{opacity:1;}70%{opacity:.6;}}
-@keyframes hwRise{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
-
-/* candele ai lati */
-.hw-candles{
-  position:absolute;inset:0;z-index:1;pointer-events:none;
-  display:flex;justify-content:space-between;align-items:flex-end;padding:0 0 8%;
-}
-.hw-candle{position:relative;width:14px;}
-.hw-candle b{
-  display:block;width:8px;height:56px;margin:0 auto;
-  background:linear-gradient(180deg, rgba(237,228,216,0.45), rgba(237,228,216,0.10));
-  border-radius:2px 2px 0 0;
-}
-.hw-candle i{
-  position:absolute;left:50%;bottom:54px;transform:translateX(-50%);
-  width:8px;height:14px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;
-  background:radial-gradient(circle at 50% 70%, #FFE6B0, #E8912F 55%, rgba(194,51,74,0) 76%);
-  box-shadow:0 0 18px 6px rgba(232,145,47,0.45);
-  animation:hwFlame 2.6s ease-in-out infinite;
-}
-.hw-candle:last-child i{animation-delay:-1.1s;}
-@keyframes hwFlame{
-  0%,100%{transform:translateX(-50%) scaleY(1) scaleX(1);opacity:.95;}
-  35%{transform:translateX(-50%) scaleY(1.18) scaleX(.92);opacity:1;}
-  65%{transform:translateX(-50%) scaleY(.9) scaleX(1.06);opacity:.8;}
-}
 
 /* 3b. testo */
 .hw-eyebrow{font-family:var(--FB);font-size:.54rem;letter-spacing:.42em;text-transform:uppercase;color:var(--hw-gold);margin-bottom:16px;}
@@ -237,12 +141,12 @@ body.hw-page footer{background:#050306;border-top:1px solid rgba(201,169,110,0.1
 @media(max-width:900px){
   .hw-hero{padding:100px 20px 70px;}
   .hw-grid{grid-template-columns:1fr;gap:44px;}
-  .hw-poster{max-width:min(380px,100%);}
+  
   .hw-book{padding:74px 20px 86px;}
-  .hw-shafts{opacity:.32;}
-  .hw-fog::before{animation:none;}
-  .hw-rose{animation:none;}
-  .hw-candles{display:none;}
+  
+  
+  
+  
 }
 @media(max-width:480px){
   .hw-facts{grid-template-columns:1fr;gap:18px;}
@@ -250,45 +154,19 @@ body.hw-page footer{background:#050306;border-top:1px solid rgba(201,169,110,0.1
   .hw-ctas{flex-direction:column;}
   .hw-btn{width:100%;}
   .hw-title{font-size:clamp(2.2rem,11.5vw,3rem);}
-  .hw-embers i:nth-child(n+6){display:none;}
 }
 @media (prefers-reduced-motion: reduce){
-  .hw-fog::before,.hw-poster,.hw-poster::before,.hw-rose,
-  .hw-embers i,.hw-candle i,.hw-shafts::before,.hw-shafts::after{animation:none !important;}
+  .hw-poster,.hw-poster::before,.hw-halo,.hw-grain,.hw-rv{
+    animation:none !important;transition:none !important;
+  }
+  .hw-rv{opacity:1 !important;transform:none !important;}
 }
-
 
 /* ═══════════════════════════════════════════════════════════════
-   LIVELLO ATMOSFERA — sipario d'ingresso, grana, profondità
-   Tutto originale, solo CSS/SVG. Isolato in body.hw-page.
+   LIVELLO ATMOSFERA — grana e comparse (nessuna animazione invasiva)
 ═══════════════════════════════════════════════════════════════ */
 
-/* ─── 1. SIPARIO: due ante che si aprono al caricamento ─── */
-.hw-veil{
-  position:fixed;inset:0;z-index:9000;pointer-events:none;
-  display:flex;
-}
-.hw-veil span{
-  flex:1;background:#050205;
-  transition:transform 1.5s cubic-bezier(.76,0,.24,1);
-  will-change:transform;
-}
-.hw-veil span:first-child{transform-origin:left center;}
-.hw-veil span:last-child {transform-origin:right center;}
-/* fessura di luce dorata al centro */
-.hw-veil::after{
-  content:'';position:absolute;top:0;bottom:0;left:50%;width:1px;
-  transform:translateX(-50%);
-  background:linear-gradient(to bottom,transparent,rgba(201,169,110,.85),transparent);
-  box-shadow:0 0 26px 5px rgba(201,169,110,.35);
-  transition:opacity .8s ease;
-}
-body.hw-open .hw-veil span:first-child{transform:translateX(-101%);}
-body.hw-open .hw-veil span:last-child {transform:translateX(101%);}
-body.hw-open .hw-veil::after{opacity:0;}
-body.hw-open .hw-veil{transition:visibility 0s 1.6s;visibility:hidden;}
-
-/* ─── 2. GRANA DA PELLICOLA (rumore generato, non un'immagine) ─── */
+/* ─── GRANA DA PELLICOLA (rumore generato, non un'immagine) ─── */
 .hw-grain{
   position:fixed;inset:-150%;z-index:8000;pointer-events:none;
   opacity:.045;mix-blend-mode:overlay;
@@ -303,11 +181,6 @@ body.hw-open .hw-veil{transition:visibility 0s 1.6s;visibility:hidden;}
 }
 
 /* ─── 3. PROFONDITÀ: la scena reagisce al mouse (solo desktop) ─── */
-.hw-stage{
-  transform:translate3d(var(--px,0px),var(--py,0px),0);
-  transition:transform .5s cubic-bezier(.2,.8,.2,1);
-  will-change:transform;
-}
 
 /* ─── 4. COMPARSE PROGRESSIVE ─── */
 .hw-rv{
@@ -328,11 +201,117 @@ body.hw-open .hw-veil{transition:visibility 0s 1.6s;visibility:hidden;}
 /* ─── MOBILE: niente effetti pesanti ─── */
 @media(max-width:900px){
   .hw-grain{opacity:.03;animation:none;}
-  .hw-stage{transform:none !important;}
+  
 }
 @media (prefers-reduced-motion: reduce){
-  .hw-veil span{transition:none;}
+  
   .hw-grain{animation:none;}
   .hw-title{animation:none;}
   .hw-rv{opacity:1;transform:none;transition:none;}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FONDALE DIETRO LA LOCANDINA — versione minimale
+   Niente arco, rosone, candele, fasci o braci: solo profondità,
+   un alone caldo e una vignettatura. La locandina è protagonista.
+═══════════════════════════════════════════════════════════════ */
+
+/* alone d'altare: una sola sorgente calda, respiro lentissimo */
+.hw-halo{
+  position:fixed;left:50%;top:44%;
+  width:min(150vw,1500px);height:min(110vh,1000px);
+  transform:translate(-50%,-50%);
+  z-index:0;pointer-events:none;
+  background:
+    radial-gradient(closest-side, rgba(126,18,32,0.30) 0%, rgba(126,18,32,0.10) 45%, transparent 72%),
+    radial-gradient(closest-side, rgba(201,169,110,0.10) 0%, transparent 62%);
+  filter:blur(40px);
+  animation:hwBreath 16s ease-in-out infinite alternate;
+}
+@keyframes hwBreath{
+  from{opacity:.78;transform:translate(-50%,-50%) scale(1);}
+  to  {opacity:1;  transform:translate(-50%,-50%) scale(1.06);}
+}
+
+/* ─── Locandina ─── */
+.hw-stage{
+  position:relative;display:flex;flex-direction:column;align-items:center;
+  padding:0;
+}
+
+.hw-poster{
+  position:relative;z-index:2;margin:0;
+  width:100%;max-width:400px;
+  padding:9px;
+  background:linear-gradient(165deg, rgba(201,169,110,0.30), rgba(201,169,110,0.05) 45%, rgba(126,18,32,0.14));
+  border:1px solid rgba(201,169,110,0.34);
+  box-shadow:
+    0 46px 110px rgba(0,0,0,0.88),
+    0 0 90px rgba(126,18,32,0.22);
+  transform:translate3d(var(--px,0),var(--py,0),0);
+  transition:transform .5s cubic-bezier(.16,1,.3,1);
+}
+/* LA LOCANDINA NON VIENE MAI RITAGLIATA:
+   altezza automatica = si vede sempre per intero, bordi compresi */
+.hw-poster img{
+  display:block;width:100%;height:auto;
+  object-fit:contain;
+  border:1px solid rgba(0,0,0,0.55);
+}
+
+/* riflesso sul pavimento: dettaglio premium, appena percettibile */
+.hw-reflection{
+  position:relative;z-index:1;
+  width:100%;max-width:400px;height:90px;margin-top:2px;
+  background:linear-gradient(to bottom, rgba(126,18,32,0.20), transparent 78%);
+  filter:blur(16px);
+  transform:translate3d(var(--px,0),0,0) scaleY(-1);
+  opacity:.65;pointer-events:none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTRASTO — footer, note legali e banner cookie
+   Il footer usa colori inline molto tenui, pensati per lo sfondo
+   bordeaux della home: su questo fondo quasi nero sparivano.
+   Qui vengono rialzati (serve !important per battere gli inline).
+═══════════════════════════════════════════════════════════════ */
+body.hw-page footer{
+  /* il footer sta FUORI da .hw-wrap: senza z-index veniva coperto
+     dagli strati di sfondo fissi e i testi sparivano */
+  position:relative;z-index:3;
+  background:#08050A;
+  border-top:1px solid rgba(201,169,110,0.20);
+}
+body.hw-page .ft-word{color:var(--hw-bone);}
+body.hw-page .ft-tag{color:rgba(237,228,216,0.80) !important;}
+body.hw-page .ft-legal{color:rgba(237,228,216,0.62) !important;}
+
+/* link legali in fondo (Privacy · Termini · Cookie) */
+body.hw-page footer a{
+  color:rgba(237,228,216,0.72) !important;
+  transition:color .25s;
+}
+body.hw-page footer a:hover{color:var(--hw-goldl) !important;}
+/* "Gestisci cookie" è un <button>, non un <a>: va alzato a parte */
+body.hw-page #ck-settings-link{color:rgba(237,228,216,0.72) !important;}
+body.hw-page #ck-settings-link:hover{color:var(--hw-goldl) !important;}
+/* separatore sopra i link legali, reso visibile */
+body.hw-page footer > div[style]{
+  border-top-color:rgba(201,169,110,0.18) !important;
+  color:rgba(237,228,216,0.62) !important;
+}
+
+/* banner cookie: sfondo e testi leggibili anche su pagina scura */
+body.hw-page #ck-banner{
+  background:#12080D;
+  border-top:1px solid rgba(201,169,110,0.28);
+  color:rgba(237,228,216,0.86);
+}
+body.hw-page #ck-banner a{color:var(--hw-goldl);}
+body.hw-page #ck-banner .ck-accept{background:var(--hw-bone);color:#12080D;}
+
+@media(max-width:900px){
+  .hw-poster{max-width:min(380px,100%);}
+  .hw-reflection{max-width:min(380px,100%);height:64px;}
+  .hw-halo{filter:blur(30px);animation:none;}
 }
