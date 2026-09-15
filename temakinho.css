@@ -1,0 +1,257 @@
+/* ═══════════════════════════════════════════════════════════════
+   REWIND TEMAKINHO — tema "serra tropicale"
+   Caricato SOLO da temakinho.html. Classi prefissate .tm-,
+   variabili dentro body.tm-page: non tocca il resto del sito.
+   Ispirato all'atmosfera della location: verde profondo, crema,
+   legno caldo, luce alta da lucernario. Grafica originale.
+═══════════════════════════════════════════════════════════════ */
+
+body.tm-page{
+  --tm-ink:#0B1A15;      /* verde quasi nero */
+  --tm-deep:#102A22;     /* smeraldo profondo */
+  --tm-moss:#1C4436;     /* verde foglia */
+  --tm-cream:#F3EDE1;    /* crema */
+  --tm-sand:#E6D9C3;     /* sabbia */
+  --tm-wood:#B5734A;     /* legno/terracotta */
+  --tm-gold:#D8B978;     /* ottone caldo */
+  --tm-muted:rgba(243,237,225,0.66);
+
+  background:var(--tm-ink);
+  color:var(--tm-cream);
+  overflow-x:hidden;
+}
+
+/* ─── FONDALE: luce dall'alto, verde che scende ─── */
+.tm-bg{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(90% 55% at 50% -6%, rgba(243,237,225,0.16) 0%, transparent 58%),
+    radial-gradient(75% 45% at 50% 104%, rgba(28,68,54,0.55) 0%, transparent 62%),
+    linear-gradient(180deg,#123026 0%,#0B1A15 48%,#0E241D 100%);
+}
+.tm-bg::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(80% 64% at 50% 44%, transparent 40%, rgba(4,10,8,0.78) 100%);
+}
+
+/* ─── NAV notturna in chiave verde ─── */
+body.tm-page #nav{
+  background:linear-gradient(180deg, rgba(11,26,21,0.94), rgba(11,26,21,0));
+  border-bottom:1px solid transparent;backdrop-filter:blur(6px);
+}
+body.tm-page #nav.scrolled{
+  background:rgba(11,26,21,0.96);border-bottom:1px solid rgba(216,185,120,0.20);
+}
+body.tm-page .nav-cta{
+  background:transparent;color:var(--tm-gold);
+  border:1px solid rgba(216,185,120,0.55);
+}
+body.tm-page .nav-cta:hover{background:var(--tm-moss);color:var(--tm-cream);border-color:var(--tm-moss);}
+body.tm-page .mobile-menu{background:rgba(11,26,21,0.985);}
+
+.tm-wrap{position:relative;z-index:2;}
+
+/* ─── HERO ─── */
+.tm-hero{
+  position:relative;overflow:hidden;
+  padding:112px 44px 90px;max-width:1240px;margin:0 auto;
+}
+.tm-back{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:34px;
+  font-family:var(--FB);font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(243,237,225,0.5);text-decoration:none;transition:color .3s;
+}
+.tm-back:hover{color:var(--tm-gold);}
+
+/* alone caldo ancorato alla hero */
+.tm-halo{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:100%;max-width:1100px;height:112%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(closest-side, rgba(28,68,54,0.55) 0%, rgba(28,68,54,0.16) 48%, transparent 74%),
+    radial-gradient(closest-side, rgba(216,185,120,0.12) 0%, transparent 60%);
+  filter:blur(44px);
+  animation:tmBreath 18s ease-in-out infinite alternate;
+}
+@keyframes tmBreath{
+  from{opacity:.8;transform:translate(-50%,-50%) scale(1);}
+  to  {opacity:1; transform:translate(-50%,-50%) scale(1.05);}
+}
+
+/* foglie decorative (disegno originale, appena accennate) */
+.tm-frond{
+  position:absolute;z-index:0;pointer-events:none;
+  opacity:.16;color:var(--tm-cream);
+}
+.tm-frond svg{width:100%;height:auto;display:block;}
+.tm-frond path{fill:none;stroke:currentColor;stroke-width:1.1;stroke-linecap:round;}
+.tm-frond.l{left:-70px;top:4%;width:230px;transform:rotate(-8deg);}
+.tm-frond.r{right:-80px;bottom:2%;width:250px;transform:scaleX(-1) rotate(-12deg);}
+
+.tm-grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1fr);
+  gap:66px;align-items:center;
+}
+.tm-grid > *{min-width:0;}
+
+/* ─── Locandina / immagine evento ─── */
+.tm-stage{position:relative;display:flex;flex-direction:column;align-items:center;}
+.tm-poster{
+  position:relative;z-index:2;margin:0;width:100%;max-width:400px;padding:9px;
+  background:linear-gradient(165deg, rgba(216,185,120,0.32), rgba(216,185,120,0.06) 45%, rgba(28,68,54,0.22));
+  border:1px solid rgba(216,185,120,0.38);
+  box-shadow:0 46px 110px rgba(0,0,0,0.75), 0 0 90px rgba(28,68,54,0.30);
+}
+/* mai ritagliata */
+.tm-poster img{display:block;width:100%;height:auto;object-fit:contain;border:1px solid rgba(0,0,0,0.4);}
+.tm-poster::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(72% 62% at 50% 50%, rgba(216,185,120,0.32), transparent 76%);
+  filter:blur(34px);
+}
+/* segnaposto elegante finché non c'è la locandina */
+.tm-ph{
+  width:100%;aspect-ratio:3/5;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  background:linear-gradient(150deg, rgba(28,68,54,0.55), rgba(11,26,21,0.9));
+  border:1px solid rgba(216,185,120,0.16);text-align:center;padding:26px;
+}
+.tm-ph span:first-child{font-family:var(--FD);font-size:2rem;letter-spacing:.18em;color:rgba(216,185,120,0.75);}
+.tm-ph span:last-child{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,237,225,0.55);}
+
+/* ─── Testo ─── */
+.tm-eyebrow{font-family:var(--FB);font-size:.54rem;letter-spacing:.42em;text-transform:uppercase;color:var(--tm-gold);margin-bottom:16px;}
+.tm-brand{font-family:var(--FD);font-size:clamp(1.3rem,2.6vw,1.9rem);letter-spacing:.44em;text-indent:.44em;color:var(--tm-cream);opacity:.92;margin-bottom:2px;}
+.tm-title{
+  font-family:var(--FD);font-size:clamp(2.2rem,5.6vw,4.1rem);
+  line-height:.94;letter-spacing:.03em;max-width:100%;color:var(--tm-cream);
+  text-shadow:0 0 42px rgba(28,68,54,0.7), 0 2px 26px rgba(0,0,0,0.75);margin-bottom:10px;
+}
+.tm-claim{font-family:var(--FP);font-style:italic;font-size:clamp(1rem,2vw,1.28rem);color:var(--tm-gold);letter-spacing:.04em;margin-bottom:8px;}
+.tm-sub{font-family:var(--FS);font-style:italic;font-size:1.02rem;color:var(--tm-muted);margin-bottom:28px;}
+.tm-rule{position:relative;height:1px;margin-bottom:30px;background:linear-gradient(to right, rgba(216,185,120,0.65), rgba(216,185,120,0.04));}
+.tm-rule::after{
+  content:'';position:absolute;left:0;top:-3px;width:7px;height:7px;border-radius:50%;
+  background:var(--tm-gold);
+}
+
+/* ─── Informazioni ─── */
+.tm-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 30px;margin-bottom:36px;}
+.tm-fact{position:relative;padding-left:16px;}
+.tm-fact::before{
+  content:'';position:absolute;left:0;top:2px;bottom:2px;width:1px;
+  background:linear-gradient(to bottom, rgba(216,185,120,0.75), rgba(216,185,120,0.06));
+}
+.tm-fact-l{font-family:var(--FB);font-size:.49rem;letter-spacing:.3em;text-transform:uppercase;color:var(--tm-gold);margin-bottom:6px;}
+.tm-fact-v{font-family:var(--FS);font-size:1.02rem;color:var(--tm-cream);line-height:1.45;}
+.tm-fact.big .tm-fact-v{font-family:var(--FD);font-size:1.62rem;letter-spacing:.05em;color:var(--tm-sand);}
+
+/* ─── CTA ─── */
+.tm-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+.tm-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:17px 40px;cursor:pointer;text-decoration:none;
+  font-family:var(--FB);font-size:.6rem;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;border:1px solid transparent;
+  transition:background .35s,color .35s,border-color .35s,transform .35s,box-shadow .35s;
+}
+.tm-btn-primary{background:var(--tm-moss);color:var(--tm-cream);box-shadow:0 14px 44px rgba(28,68,54,0.6);}
+.tm-btn-primary:hover{background:var(--tm-wood);transform:translateY(-2px);box-shadow:0 18px 58px rgba(181,115,74,0.5);}
+
+/* ═══ PRENOTAZIONE ═══
+   NB: la sezione ha id="prenota" e nel CSS base c'è #prenota{background:#3D0014}.
+   Le regole con ID vincono sulle classi: serve un selettore con ID. */
+body.tm-page #prenota.tm-book{
+  position:relative;z-index:2;padding:92px 44px 104px;
+  border-top:1px solid rgba(216,185,120,0.16);
+  background:
+    radial-gradient(100% 55% at 50% 0%, rgba(28,68,54,0.34) 0%, transparent 62%),
+    linear-gradient(180deg, #0D211B 0%, #0B1A15 100%);
+}
+.tm-book-inner{max-width:620px;margin:0 auto;}
+.tm-book-label{font-family:var(--FB);font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--tm-gold);margin-bottom:14px;text-align:center;}
+.tm-book-ttl{font-family:var(--FD);font-size:clamp(2rem,5vw,3.2rem);line-height:1;letter-spacing:.05em;color:var(--tm-cream);text-align:center;margin-bottom:14px;}
+.tm-book-sub{font-family:var(--FP);font-style:italic;font-size:1rem;color:var(--tm-muted);text-align:center;line-height:1.8;margin-bottom:42px;}
+
+.tm-form{display:flex;flex-direction:column;gap:26px;}
+.tm-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.tm-grp{display:flex;flex-direction:column;gap:8px;}
+.tm-lbl{font-family:var(--FB);font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(243,237,225,0.82);}
+.tm-inp{
+  width:100%;padding:16px;
+  background:rgba(243,237,225,0.07);
+  border:1px solid rgba(216,185,120,0.45);
+  color:var(--tm-cream);
+  font-family:var(--FB);font-size:1rem;border-radius:0;-webkit-appearance:none;
+  box-shadow:inset 0 1px 0 rgba(243,237,225,0.05);
+  transition:border-color .3s,background .3s,box-shadow .3s;
+}
+.tm-inp::placeholder{color:rgba(243,237,225,0.52);}
+.tm-inp:focus{outline:none;border-color:var(--tm-gold);background:rgba(243,237,225,0.11);box-shadow:0 0 0 3px rgba(216,185,120,0.22);}
+.tm-gdpr{display:flex;align-items:flex-start;gap:11px;cursor:pointer;}
+.tm-gdpr input{flex-shrink:0;width:17px;height:17px;margin-top:3px;accent-color:var(--tm-moss);cursor:pointer;}
+.tm-gdpr span{font-size:.78rem;line-height:1.7;color:rgba(243,237,225,0.78);}
+.tm-gdpr a{color:var(--tm-gold);}
+.tm-status{display:none;padding:13px 16px;font-size:.8rem;text-align:center;border:1px solid transparent;}
+.tm-status.sending{display:block;color:var(--tm-sand);border-color:rgba(216,185,120,0.35);background:rgba(216,185,120,0.08);}
+.tm-status.error{display:block;color:#F6B9A0;border-color:rgba(181,115,74,0.5);background:rgba(181,115,74,0.18);}
+.tm-submit{
+  width:100%;padding:19px;cursor:pointer;border:none;
+  background:var(--tm-moss);color:var(--tm-cream);
+  font-family:var(--FB);font-size:.62rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;
+  box-shadow:0 12px 40px rgba(28,68,54,0.55);
+  transition:background .35s,box-shadow .35s,transform .3s;
+}
+.tm-submit:hover:not(:disabled){background:var(--tm-wood);transform:translateY(-2px);box-shadow:0 16px 54px rgba(181,115,74,0.5);}
+.tm-submit:disabled{opacity:.55;cursor:not-allowed;transform:none;}
+
+.tm-confirm{display:none;flex-direction:column;align-items:center;gap:15px;padding:52px 26px;text-align:center;border:1px solid rgba(216,185,120,0.34);background:rgba(0,0,0,0.35);}
+.tm-confirm.show{display:flex;}
+.tm-confirm-ico{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(216,185,120,0.55);color:var(--tm-gold);font-size:1.5rem;}
+.tm-confirm-ttl{font-family:var(--FD);font-size:1.9rem;letter-spacing:.08em;color:var(--tm-cream);}
+.tm-confirm-txt{font-size:.92rem;line-height:1.8;color:var(--tm-muted);}
+
+/* ─── Footer leggibile su fondo verde scuro ─── */
+body.tm-page footer{
+  position:relative;z-index:3;
+  background:#091511;border-top:1px solid rgba(216,185,120,0.22);
+}
+body.tm-page .ft-word{color:var(--tm-cream);}
+body.tm-page .ft-tag{color:rgba(243,237,225,0.80) !important;}
+body.tm-page .ft-legal{color:rgba(243,237,225,0.62) !important;}
+body.tm-page footer a{color:rgba(243,237,225,0.74) !important;transition:color .25s;}
+body.tm-page footer a:hover{color:var(--tm-gold) !important;}
+body.tm-page footer > div[style]{
+  border-top-color:rgba(216,185,120,0.20) !important;
+  color:rgba(243,237,225,0.62) !important;
+}
+body.tm-page #ck-settings-link{color:rgba(243,237,225,0.74) !important;}
+body.tm-page #ck-settings-link:hover{color:var(--tm-gold) !important;}
+body.tm-page #ck-banner{
+  background:#0D1F19;border-top:1px solid rgba(216,185,120,0.3);color:rgba(243,237,225,0.88);
+}
+body.tm-page #ck-banner a{color:var(--tm-gold);}
+body.tm-page #ck-banner .ck-accept{background:var(--tm-cream);color:#0D1F19;}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:900px){
+  .tm-hero{padding:100px 20px 70px;}
+  .tm-grid{grid-template-columns:1fr;gap:44px;}
+  .tm-poster{max-width:min(380px,100%);}
+  body.tm-page #prenota.tm-book{padding:74px 20px 86px;}
+  .tm-inp{padding:17px 15px;border-color:rgba(216,185,120,0.55);background:rgba(243,237,225,0.085);}
+  .tm-inp::placeholder{color:rgba(243,237,225,0.6);}
+  .tm-halo{filter:blur(32px);animation:none;}
+  .tm-frond{display:none;}
+}
+@media(max-width:480px){
+  .tm-facts{grid-template-columns:1fr;gap:18px;}
+  .tm-row{grid-template-columns:1fr;}
+  .tm-ctas{flex-direction:column;}
+  .tm-btn{width:100%;}
+  .tm-title{font-size:clamp(2.1rem,10.5vw,2.9rem);}
+}
+@media (prefers-reduced-motion: reduce){
+  .tm-halo{animation:none !important;}
+}
