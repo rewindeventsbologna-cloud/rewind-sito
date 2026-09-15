@@ -17,27 +17,6 @@ const REWIND_EVENTS = [
   // ==============================================================
 
   {
-    id:            'temakinho-2026',
-    title:         'REWIND TEMAKINHO',
-    date:          '2026-09-16',
-    displayDate:   '16 Settembre 2026',
-    location:      'Temakinho',
-    locationDetail:'',                    // ← indirizzo/città da completare
-    tags:          ['Sushi', 'Cena'],
-    image:         '',                    // ← metti qui la locandina quando è pronta
-    customPage:    'temakinho.html',
-    description:   '',
-    time:          '',                    // ← orario da definire
-    dressCode:     '',
-    lineup:        '',
-    price:         '40 €',
-    ingresso:      'Cena + Sushi',
-    program:       [],
-    registrationEnabled: true,
-    galleryUrl:    ''
-  },
-
-  {
     // --- identificativo univoco: usato nell'URL e nel Google Sheet ---
     id:            'halloween-2026',
 
