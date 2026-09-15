@@ -51,7 +51,6 @@
 
 <!-- fondale: profondità della navata + alone d'altare (nessun elemento invadente) -->
 <div class="hw-bg" aria-hidden="true"></div>
-<div class="hw-halo" aria-hidden="true"></div>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobMenu">
@@ -84,6 +83,8 @@
 
   <!-- ═══ HERO ═══ -->
   <header class="hw-hero">
+    <!-- alone caldo: appartiene alla hero, non segue lo scroll -->
+    <div class="hw-halo" aria-hidden="true"></div>
     <a href="index.html#prossimi" class="hw-back">← &nbsp;Tutti gli eventi</a>
 
     <div class="hw-grid">
@@ -347,6 +348,9 @@ function cMob(){mob.classList.remove('open');hamb.classList.remove('open');}
           eventName:     hwEv.title,
           eventDate:     hwEv.displayDate,
           eventLocation: 'Chiesa sconsacrata — Zola Predosa',
+          eventTime:     hwEv.time     || '22:00 – 04:00',
+          eventPrice:    hwEv.price    || '25 €',
+          eventFormat:   hwEv.ingresso || 'Free Bar',
           data: new Date().toLocaleString('it-IT')
         }),
         signal: ctrl.signal

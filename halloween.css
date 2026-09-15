@@ -39,14 +39,14 @@ body.hw-page .nav-cta:hover{background:var(--hw-blood);color:var(--hw-bone);bord
 body.hw-page .mobile-menu{background:rgba(5,3,6,0.985);}
 
 /* ═══ 3. HERO ═══ */
-.hw-hero{position:relative;padding:112px 44px 90px;max-width:1240px;margin:0 auto;}
+.hw-hero{position:relative;overflow:hidden;padding:112px 44px 90px;max-width:1240px;margin:0 auto;}
 .hw-back{
   display:inline-flex;align-items:center;gap:8px;margin-bottom:34px;
   font-family:var(--FB);font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;
   color:rgba(237,228,216,0.42);text-decoration:none;transition:color .3s;
 }
 .hw-back:hover{color:var(--hw-goldl);}
-.hw-grid{display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1fr);gap:66px;align-items:center;}
+.hw-grid{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1fr);gap:66px;align-items:center;}
 .hw-grid > *{min-width:0;}
 
 /* 3b. testo */
@@ -92,10 +92,18 @@ body.hw-page .mobile-menu{background:rgba(5,3,6,0.985);}
 .hw-btn-ghost:hover{border-color:var(--hw-goldl);color:var(--hw-bone);}
 
 /* ═══ 4. PRENOTAZIONE ═══ */
-.hw-book{
+/* NB: la sezione ha id="prenota" e nel CSS base esiste una regola
+   con ID (#prenota{background:#3D0014}) che per specificità batte
+   qualsiasi classe. Qui si usa quindi un selettore con ID. */
+body.hw-page #prenota.hw-book{
   position:relative;z-index:2;padding:92px 44px 104px;
   border-top:1px solid rgba(201,169,110,0.14);
-  background:linear-gradient(180deg, rgba(42,10,18,0.30) 0%, rgba(9,4,8,0.93) 55%, rgba(5,3,6,0.97) 100%);
+  /* base OPACA nello stesso nero della pagina: copre il bagliore
+     rosso dello strato fisso, che qui creava uno stacco bordeaux.
+     Resta solo un accenno caldo in alto per continuità con la hero. */
+  background:
+    radial-gradient(100% 55% at 50% 0%, rgba(126,18,32,0.16) 0%, transparent 62%),
+    linear-gradient(180deg, #070409 0%, #050306 100%);
 }
 .hw-book-inner{max-width:620px;margin:0 auto;}
 .hw-book-label{font-family:var(--FB);font-size:.52rem;letter-spacing:.4em;text-transform:uppercase;color:var(--hw-gold);margin-bottom:14px;text-align:center;}
@@ -142,7 +150,7 @@ body.hw-page footer{background:#050306;border-top:1px solid rgba(201,169,110,0.1
   .hw-hero{padding:100px 20px 70px;}
   .hw-grid{grid-template-columns:1fr;gap:44px;}
   
-  .hw-book{padding:74px 20px 86px;}
+  body.hw-page #prenota.hw-book{padding:74px 20px 86px;}
   
   
   
@@ -218,8 +226,9 @@ body.hw-page footer{background:#050306;border-top:1px solid rgba(201,169,110,0.1
 
 /* alone d'altare: una sola sorgente calda, respiro lentissimo */
 .hw-halo{
-  position:fixed;left:50%;top:44%;
-  width:min(150vw,1500px);height:min(110vh,1000px);
+  /* ancorato alla hero: oltre non deve tingere nulla */
+  position:absolute;left:50%;top:50%;
+  width:100%;max-width:1100px;height:112%;
   transform:translate(-50%,-50%);
   z-index:0;pointer-events:none;
   background:

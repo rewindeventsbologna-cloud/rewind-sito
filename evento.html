@@ -281,7 +281,10 @@ function initForm(){
           eventId:   ev.id,
           eventName: ev.title,
           eventDate: ev.displayDate,
-          eventLocation: ev.location || '',
+          eventLocation: [ev.location, ev.locationDetail].filter(Boolean).join(' — '),
+          eventTime:   ev.time     || '',
+          eventPrice:  ev.price    || '',
+          eventFormat: ev.ingresso || '',
           data: new Date().toLocaleString('it-IT')
         }),
         signal: ctrl.signal
