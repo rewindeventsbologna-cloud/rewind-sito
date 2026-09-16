@@ -82,7 +82,7 @@ const REWIND_EVENTS = [
     ingresso:      '',
     program:       [],
     registrationEnabled: false,
-    galleryUrl:    ''
+    galleryUrl:    'https://drive.google.com/drive/folders/1Hz1fvXv_8ylfkjWUihybtQL84gVaAfuJ'
   },
 
   {
