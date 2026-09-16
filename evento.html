@@ -290,8 +290,13 @@ function initForm(){
         signal: ctrl.signal
       });
       clearTimeout(to);
-      const json = await resp.json().catch(() => ({}));
-      if(json && json.error) throw new Error(json.error);
+      /* Nessuna conferma esplicita = prenotazione NON salvata */
+      if(!resp.ok) throw new Error('Risposta del server: ' + resp.status);
+      let json = null;
+      try { json = await resp.json(); }
+      catch(e){ throw new Error('Risposta non leggibile dal server'); }
+      if(!json || json.error) throw new Error((json && json.error) || 'Errore sconosciuto');
+      if(json.ok !== true)    throw new Error('Salvataggio non confermato');
 
       done = true;
       form.style.display = 'none';
