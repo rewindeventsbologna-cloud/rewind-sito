@@ -356,8 +356,14 @@ function cMob(){mob.classList.remove('open');hamb.classList.remove('open');}
         signal: ctrl.signal
       });
       clearTimeout(to);
-      const json = await resp.json().catch(()=>({}));
-      if(json && json.error) throw new Error(json.error);
+      /* Se il server non conferma esplicitamente, la prenotazione NON è
+         andata a buon fine: va mostrato un errore, non una finta conferma. */
+      if(!resp.ok) throw new Error('Risposta del server: ' + resp.status);
+      let json = null;
+      try { json = await resp.json(); }
+      catch(e){ throw new Error('Risposta non leggibile dal server'); }
+      if(!json || json.error) throw new Error((json && json.error) || 'Errore sconosciuto');
+      if(json.ok !== true)    throw new Error('Salvataggio non confermato');
 
       done = true;
       form.style.display='none';
