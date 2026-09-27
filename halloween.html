@@ -119,6 +119,10 @@
           </div>
           <div class="hw-fact big">
             <p class="hw-fact-l">Ingresso</p>
+            <!-- etichetta sopra il prezzo: si cambia dal foglio "config"
+                 con la chiave  halloween.badge_prezzo
+                 (se la lasci vuota, l'etichetta sparisce da sola) -->
+            <p class="hw-badge" data-cfg="halloween.badge_prezzo" data-cfg-optional>Early Bird</p>
             <p class="hw-fact-v" data-cfg="halloween.prezzo">25 €</p>
           </div>
           <div class="hw-fact">
@@ -224,7 +228,7 @@
   </div>
 </footer>
 
-<script src="events-data.js"></script>
+<script src="events-data.js" charset="utf-8"></script>
 <script>
 /* ═══════════════════════════════════════════════════
    CONFIGURAZIONE REGISTRAZIONE — stesso sistema Google
@@ -303,7 +307,14 @@ async function caricaConfig(){
     HW_CFG = cfg;
     document.querySelectorAll('[data-cfg]').forEach(el => {
       const k = el.getAttribute('data-cfg');
-      if(cfg[k] !== undefined && cfg[k] !== '') el.textContent = cfg[k];
+      if(cfg[k] === undefined) return;                 // chiave assente: resta il valore della pagina
+      const val = String(cfg[k]).trim();
+      if(val === '' && el.hasAttribute('data-cfg-optional')){
+        el.style.display = 'none';                     // valore vuoto: elemento nascosto
+      }else if(val !== ''){
+        el.textContent = val;
+        el.style.display = '';
+      }
     });
   }catch(e){ /* nessun problema: restano i valori della pagina */ }
 }

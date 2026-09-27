@@ -297,3 +297,15 @@ body.tm-page #ck-banner .ck-accept{background:var(--tm-cream);color:#0B211A;}
 @media (prefers-reduced-motion: reduce){
   .tm-halo,.tm-modal-box,.tm-form-wrap.open{animation:none !important;}
 }
+
+
+/* ─── Simbolo € sempre visibile ───────────────────────────────
+   Bebas Neue ha un set di caratteri ridotto: se il glifo dell'euro
+   mancasse, il browser lo prende dai font elencati dopo. I numeri
+   restano in Bebas Neue, cambia solo il simbolo. */
+.tm-opt-price,
+.tm-fact.big .tm-fact-v,
+.tm-dj-price{ font-family:var(--FD), 'DM Sans', Arial, Helvetica, sans-serif; }
+/* righe informative e kicker: serif originale + ripiego per il simbolo */
+.tm-fact-v{ font-family:var(--FS), Georgia, 'DM Sans', Arial, serif; }
+.tm-modal-kicker{ font-family:var(--FB), 'DM Sans', Arial, sans-serif; }

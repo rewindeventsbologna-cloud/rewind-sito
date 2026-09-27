@@ -30,7 +30,7 @@ const REWIND_EVENTS = [
     time:          '20:00 – 02:00',
     dressCode:     'Curato ed elegante',
     lineup:        '',
-    price:         'Cena 40 € · DJ Set 15 €',
+    price:         'Cena 40 \u20AC · DJ Set 15 \u20AC',
     ingresso:      'Cena Spettacolo / DJ Set',
     program:       [],
     registrationEnabled: true,
@@ -68,7 +68,7 @@ const REWIND_EVENTS = [
     time:          '22:00 – 04:00',
     dressCode:     '',   // es. 'Costume obbligatorio'
     lineup:        '',   // es. 'DJ X · DJ Y'
-    price:         '25 €',
+    price:         '25 \u20AC',
     ingresso:      'Free Bar',
 
     // --- programma della serata (facoltativo) ---

@@ -330,3 +330,25 @@ body.hw-page #ck-banner .ck-accept{background:var(--hw-bone);color:#12080D;}
   .hw-reflection{max-width:min(380px,100%);height:64px;}
   .hw-halo{filter:blur(30px);animation:none;}
 }
+
+
+/* ─── Simbolo € sempre visibile ───────────────────────────────
+   Bebas Neue ha un set di caratteri ridotto: se il glifo dell'euro
+   mancasse, il browser lo prende dai font elencati dopo. I numeri
+   restano in Bebas Neue, cambia solo il simbolo. */
+.hw-fact.big .hw-fact-v{ font-family:var(--FD), 'DM Sans', Arial, Helvetica, sans-serif; }
+/* le righe non "big" restano nel serif originale, con ripiego per il simbolo */
+.hw-fact-v{ font-family:var(--FS), Georgia, 'DM Sans', Arial, serif; }
+
+
+/* ─── Etichetta sopra il prezzo (es. "Early Bird") ───
+   Testo modificabile dal foglio config: halloween.badge_prezzo */
+.hw-badge{
+  display:inline-block;margin-bottom:6px;
+  padding:4px 10px;
+  font-family:var(--FB);font-size:.46rem;font-weight:600;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--hw-goldl);
+  border:1px solid rgba(201,169,110,0.45);
+  background:rgba(201,169,110,0.10);
+}
