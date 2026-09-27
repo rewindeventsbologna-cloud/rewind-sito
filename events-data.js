@@ -17,6 +17,27 @@ const REWIND_EVENTS = [
   // ==============================================================
 
   {
+    id:            'temakinho-2026',
+    title:         'REWIND TEMAKINHO',
+    date:          '2026-10-16',
+    displayDate:   '16 Ottobre 2026',
+    location:      'Temakinho',
+    locationDetail:'Via Farini 13/A — 40124 Bologna',
+    tags:          ['Cena Spettacolo', 'DJ Set'],
+    image:         'temakinho-2026.jpg',
+    customPage:    'temakinho.html',
+    description:   '',
+    time:          '20:00 – 02:00',
+    dressCode:     'Curato ed elegante',
+    lineup:        '',
+    price:         'Cena 40 € · DJ Set 15 €',
+    ingresso:      'Cena Spettacolo / DJ Set',
+    program:       [],
+    registrationEnabled: true,
+    galleryUrl:    ''
+  },
+
+  {
     // --- identificativo univoco: usato nell'URL e nel Google Sheet ---
     id:            'halloween-2026',
 
