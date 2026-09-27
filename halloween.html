@@ -115,23 +115,23 @@
         <div class="hw-facts hw-rv">
           <div class="hw-fact big">
             <p class="hw-fact-l">Data</p>
-            <p class="hw-fact-v">31.10.2026</p>
+            <p class="hw-fact-v" data-cfg="halloween.data_breve">31.10.2026</p>
           </div>
           <div class="hw-fact big">
             <p class="hw-fact-l">Ingresso</p>
-            <p class="hw-fact-v">25 €</p>
+            <p class="hw-fact-v" data-cfg="halloween.prezzo">25 €</p>
           </div>
           <div class="hw-fact">
             <p class="hw-fact-l">Location</p>
-            <p class="hw-fact-v">Chiesa sconsacrata<br>Zola Predosa</p>
+            <p class="hw-fact-v" data-cfg="halloween.location">Chiesa sconsacrata<br>Zola Predosa</p>
           </div>
           <div class="hw-fact">
             <p class="hw-fact-l">Orario</p>
-            <p class="hw-fact-v">22:00 — 04:00</p>
+            <p class="hw-fact-v" data-cfg="halloween.orario">22:00 — 04:00</p>
           </div>
           <div class="hw-fact">
             <p class="hw-fact-l">Format</p>
-            <p class="hw-fact-v">Free Bar</p>
+            <p class="hw-fact-v" data-cfg="halloween.format">Free Bar</p>
           </div>
         </div>
 
@@ -288,6 +288,27 @@ const hwEv = (typeof rwEventById === 'function' ? rwEventById(HW_ID) : null) || 
   }
 })();
 
+/* ═══════════════════════════════════════════════════
+   CONFIGURAZIONE DAL GOOGLE SHEET (scheda "config")
+   Cambiando un valore nel foglio, qui si aggiorna da solo.
+   Se il foglio non risponde restano i valori scritti nella pagina.
+═══════════════════════════════════════════════════ */
+let HW_CFG = {};
+async function caricaConfig(){
+  try{
+    const r = await fetch(GAS_URL + '?action=getConfig&nocache=' + Date.now(), {cache:'no-store'});
+    if(!r.ok) return;
+    const cfg = await r.json();
+    if(!cfg || cfg.error) return;
+    HW_CFG = cfg;
+    document.querySelectorAll('[data-cfg]').forEach(el => {
+      const k = el.getAttribute('data-cfg');
+      if(cfg[k] !== undefined && cfg[k] !== '') el.textContent = cfg[k];
+    });
+  }catch(e){ /* nessun problema: restano i valori della pagina */ }
+}
+caricaConfig();
+
 /* ─── NAV ─── */
 window.addEventListener('scroll',()=>{
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
@@ -347,10 +368,10 @@ function cMob(){mob.classList.remove('open');hamb.classList.remove('open');}
           eventId:       hwEv.id,
           eventName:     hwEv.title,
           eventDate:     hwEv.displayDate,
-          eventLocation: 'Chiesa sconsacrata — Zola Predosa',
-          eventTime:     hwEv.time     || '22:00 – 04:00',
-          eventPrice:    hwEv.price    || '25 €',
-          eventFormat:   hwEv.ingresso || 'Free Bar',
+          eventLocation: HW_CFG['halloween.location'] || 'Chiesa sconsacrata — Zola Predosa',
+          eventTime:     HW_CFG['halloween.orario'] || hwEv.time || '22:00 – 04:00',
+          eventPrice:    HW_CFG['halloween.prezzo'] || hwEv.price || '25 €',
+          eventFormat:   HW_CFG['halloween.format'] || hwEv.ingresso || 'Free Bar',
           data: new Date().toLocaleString('it-IT')
         }),
         signal: ctrl.signal
