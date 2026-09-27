@@ -311,8 +311,8 @@ const next = up[0];
 if(next){
   document.getElementById('heroNext').textContent = next.title + '  ·  ' + next.displayDate;
   const btn = document.getElementById('heroBtn');
-  btn.textContent = next.registrationEnabled ? 'Prenota ora →' : 'Scopri l\'evento →';
-  btn.setAttribute('href', next.customPage || ('evento.html?id=' + next.id));
+  btn.textContent = 'Prenota ora →';
+  btn.setAttribute('href', '#prossimi');   // porta all'elenco, non al singolo evento
   document.getElementById('navCta').setAttribute('href', next.customPage || ('evento.html?id=' + next.id));
 
   const target = new Date(next.date + 'T00:00:00');

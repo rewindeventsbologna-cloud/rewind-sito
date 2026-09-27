@@ -27,7 +27,7 @@ const REWIND_EVENTS = [
     image:         'temakinho-2026.jpg',
     customPage:    'temakinho.html',
     description:   '',
-    time:          '20:00 – 02:00',
+    time:          '20:00 — Till Late',
     dressCode:     'Curato ed elegante',
     lineup:        '',
     price:         'Cena 40 \u20AC · DJ Set 15 \u20AC',
