@@ -352,3 +352,17 @@ body.hw-page #ck-banner .ck-accept{background:var(--hw-bone);color:#12080D;}
   border:1px solid rgba(201,169,110,0.45);
   background:rgba(201,169,110,0.10);
 }
+
+
+/* ─── Simbolo € in un font che lo contiene davvero ───────────────
+   Google dichiara che Bebas Neue copre l'intervallo latino (euro
+   incluso): il browser quindi NON passa al font di riserva, e se il
+   glifo manca disegna uno spazio vuoto. Qui il simbolo viene messo
+   in un elemento a parte con un font che lo possiede di sicuro. */
+.cur{
+  font-family:'DM Sans', Arial, Helvetica, sans-serif !important;
+  font-weight:400;
+  margin-left:.16em;
+  font-size:.86em;          /* riallineato all'altezza dei numeri */
+  vertical-align:baseline;
+}
