@@ -58,42 +58,23 @@
     <a href="temakinho.html" class="tm-back">← &nbsp;Torna a Temakinho</a>
 
     <div class="tm-menu-head">
-      <p class="tm-eyebrow">Rewind Temakinho &nbsp;·&nbsp; 16 Ottobre 2026</p>
+      <p class="tm-eyebrow">Rewind Temakinho &nbsp;·&nbsp; Venerdì 16 Ottobre 2026</p>
       <h1 class="tm-title">IL MENÙ</h1>
       <p class="tm-claim">Cena Spettacolo</p>
-      <p class="tm-sub">Due proposte per la serata. Scegli la tua al momento della prenotazione.</p>
+      <p class="tm-sub">Le proposte della serata. Scegli la tua al momento della prenotazione.</p>
     </div>
 
     <!-- ═══════════════════════════════════════════════════
-         I DUE MENÙ
-         Per inserirli: carica i file nella cartella principale
-         e scrivi il nome del file qui sotto, in MENU_FILES.
-         Accetta immagini (.jpg .png) oppure PDF.
+         IL MENÙ — locandina unica: menu-temakinho.jpg
+         Per aggiornarlo sostituisci quel file con lo stesso nome.
     ═══════════════════════════════════════════════════ -->
-    <div class="tm-menus">
-
-      <section class="tm-menu-card" id="menuCard1">
-        <div class="tm-menu-num">01</div>
-        <h2 class="tm-menu-ttl" id="menuTtl1">Menù 01</h2>
-        <div class="tm-menu-body" id="menuBody1">
-          <div class="tm-menu-ph">
-            <span>In arrivo</span>
-            <span>Il menù sarà pubblicato a breve</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="tm-menu-card" id="menuCard2">
-        <div class="tm-menu-num">02</div>
-        <h2 class="tm-menu-ttl" id="menuTtl2">Menù 02</h2>
-        <div class="tm-menu-body" id="menuBody2">
-          <div class="tm-menu-ph">
-            <span>In arrivo</span>
-            <span>Il menù sarà pubblicato a breve</span>
-          </div>
-        </div>
-      </section>
-
+    <div class="tm-menu-single">
+      <figure class="tm-menu-poster">
+        <img src="menu-temakinho.jpg"
+             alt="Menù della Cena Spettacolo — Rewind Temakinho, venerdì 16 ottobre 2026"
+             width="1080" height="1350">
+      </figure>
+      <a class="tm-menu-open" href="menu-temakinho.jpg" target="_blank" rel="noopener">Apri a schermo intero →</a>
     </div>
 
     <div class="tm-menu-cta">
@@ -130,41 +111,11 @@
 
 <script>
 /* ═══════════════════════════════════════════════════
-   I DUE MENÙ — unica parte da modificare
-   Scrivi il nome del file (immagine o PDF) tra le virgolette.
-   Lasciando '' resta il segnaposto "In arrivo".
-   Esempio:  file:'menu-1.jpg'   oppure   file:'menu-1.pdf'
+   IL MENÙ
+   È un'unica locandina: il file è  menu-temakinho.jpg
+   Per aggiornarlo basta sostituire quel file mantenendo
+   lo stesso nome. Nessuna modifica al codice.
 ═══════════════════════════════════════════════════ */
-const MENU_FILES = [
-  { titolo:'Menù 01', file:'' },   // ← primo menù
-  { titolo:'Menù 02', file:'' }    // ← secondo menù
-];
-
-/* ─── da qui in giù non serve modificare nulla ─── */
-MENU_FILES.forEach(function(m, i){
-  const n    = i + 1;
-  const ttl  = document.getElementById('menuTtl'  + n);
-  const body = document.getElementById('menuBody' + n);
-  if(m.titolo) ttl.textContent = m.titolo;
-  if(!m.file) return;
-
-  const est = m.file.split('.').pop().toLowerCase();
-  if(est === 'pdf'){
-    body.innerHTML =
-      '<object class="tm-menu-pdf" data="' + m.file + '" type="application/pdf">' +
-        '<div class="tm-menu-ph"><span>Menù in PDF</span>' +
-        '<span>Il tuo browser non lo mostra qui</span></div>' +
-      '</object>' +
-      '<a class="tm-menu-open" href="' + m.file + '" target="_blank" rel="noopener">Apri il menù →</a>';
-  }else{
-    body.innerHTML =
-      '<img class="tm-menu-img" src="' + m.file + '" alt="' + (m.titolo || 'Menù') +
-      ' — Rewind Temakinho" loading="lazy" ' +
-      'onerror="this.parentElement.innerHTML=\'<div class=&quot;tm-menu-ph&quot;>' +
-      '<span>In arrivo</span><span>Il menù sarà pubblicato a breve</span></div>\'">' +
-      '<a class="tm-menu-open" href="' + m.file + '" target="_blank" rel="noopener">Ingrandisci →</a>';
-  }
-});
 
 /* ─── NAV ─── */
 window.addEventListener('scroll',()=>{

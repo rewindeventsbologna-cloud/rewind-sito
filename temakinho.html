@@ -7,7 +7,7 @@
 <meta name="theme-color" content="#071410">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>REWIND TEMAKINHO — 16 Ottobre 2026 | Cena Spettacolo e DJ Set a Bologna</title>
-<meta name="description" content="REWIND TEMAKINHO — venerdì 16 ottobre 2026, Via Farini 13/A Bologna. Cena spettacolo 40 €, DJ Set 15 € con drink incluso. Dalle 20:00, till late.">
+<meta name="description" content="REWIND TEMAKINHO — venerdì 16 ottobre 2026, Via Farini 13/A Bologna. Cena spettacolo 40 €, DJ Set 15 € con drink incluso. Dalle 20:30, till late.">
 <link rel="canonical" href="https://www.rewindeventss.com/temakinho.html">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="article">
@@ -29,7 +29,7 @@
 {
   "@context":"https://schema.org","@type":"Event",
   "name":"REWIND TEMAKINHO",
-  "startDate":"2026-10-16T20:00",
+  "startDate":"2026-10-16T20:30",
   "eventStatus":"https://schema.org/EventScheduled",
   "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
   "image":"https://www.rewindeventss.com/temakinho-2026.jpg",
@@ -127,7 +127,7 @@
           </div>
           <div class="tm-fact big">
             <p class="tm-fact-l">Orario</p>
-            <p class="tm-fact-v" data-cfg="temakinho.orario">20:00 — Till Late</p>
+            <p class="tm-fact-v" data-cfg="temakinho.orario">20:30 — Till Late</p>
           </div>
           <div class="tm-fact wide">
             <p class="tm-fact-l">Location</p>
@@ -169,7 +169,7 @@
 
         <!-- ── CENA SPETTACOLO → WhatsApp ── -->
         <div class="tm-opt">
-          <p class="tm-opt-kicker">Dalle 20:00</p>
+          <p class="tm-opt-kicker">Dalle 20:30</p>
           <div class="tm-opt-name">Cena<br>Spettacolo</div>
           <div class="tm-opt-price"><span data-cfg="temakinho.prezzo_cena">40</span><span class="cur">&#8364;</span></div>
           <p class="tm-opt-note">Cena con spettacolo, poi si continua con il DJ Set.</p>
@@ -178,7 +178,7 @@
 
         <!-- ── DJ SET → form ── -->
         <div class="tm-opt">
-          <p class="tm-opt-kicker">Dalle 22:00</p>
+          <p class="tm-opt-kicker">Dalle 22:30</p>
           <div class="tm-opt-name">DJ Set</div>
           <div class="tm-opt-price"><span data-cfg="temakinho.prezzo_dj">15</span><span class="cur">&#8364;</span></div>
           <p class="tm-opt-note" data-cfg="temakinho.nota_dj">Drink incluso.</p>
@@ -308,7 +308,7 @@ const TM_ID = 'temakinho-2026';
 const tmEv = (typeof rwEventById === 'function' ? rwEventById(TM_ID) : null) || {
   id: TM_ID, title:'REWIND TEMAKINHO', displayDate:'16 Ottobre 2026',
   location:'Temakinho', locationDetail:'Via Farini 13/A — 40124 Bologna',
-  time:'20:00 — Till Late'
+  time:'20:30 — Till Late'
 };
 
 /* ─── Pannello di configurazione: valori modificabili dal foglio "config" ───
@@ -409,7 +409,7 @@ function cMob(){mob.classList.remove('open');hamb.classList.remove('open');}
           eventName:     'TEMAKINHO',
           eventDate:     tmEv.displayDate,
           eventLocation: [tmEv.location, tmEv.locationDetail].filter(Boolean).join(' — '),
-          eventTime:     'Dalle 22:00 — Till Late',
+          eventTime:     'Dalle 22:30 — Till Late',
           eventPrice:    '15 €',
           eventFormat:   'DJ Set',
           tipologia:     'DJ SET',

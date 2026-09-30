@@ -413,3 +413,23 @@ body.tm-page #ck-banner .ck-accept{background:var(--tm-cream);color:#0B211A;}
   .tm-menu-cta{flex-direction:column;}
   .tm-menu-cta .tm-btn{width:100%;}
 }
+
+/* ─── Pagina menù: locandina unica ─── */
+.tm-menu-single{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;
+  max-width:620px;margin:0 auto;
+}
+.tm-menu-poster{
+  margin:0;width:100%;padding:9px;
+  background:linear-gradient(165deg, rgba(216,185,120,.30), rgba(216,185,120,.06) 45%, rgba(28,68,54,.22));
+  border:1px solid rgba(216,185,120,.38);
+  box-shadow:0 40px 100px rgba(0,0,0,.72), 0 0 80px rgba(28,68,54,.28);
+}
+/* mai ritagliata */
+.tm-menu-poster img{
+  display:block;width:100%;height:auto;object-fit:contain;
+  border:1px solid rgba(0,0,0,.4);
+}
+.tm-menu-single .tm-menu-open{margin-top:20px;}
+@media(max-width:900px){ .tm-menu-single{max-width:min(460px,100%);} }

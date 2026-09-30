@@ -27,7 +27,7 @@ const REWIND_EVENTS = [
     image:         'temakinho-2026.jpg',
     customPage:    'temakinho.html',
     description:   '',
-    time:          '20:00 — Till Late',
+    time:          '20:30 — Till Late',
     dressCode:     'Curato ed elegante',
     lineup:        '',
     price:         'Cena 40 \u20AC · DJ Set 15 \u20AC',
@@ -37,6 +37,14 @@ const REWIND_EVENTS = [
     galleryUrl:    ''
   },
 
+  /* ═══════════════════════════════════════════════════════════
+     HALLOWEEN — ARCHIVIATO MOMENTANEAMENTE
+     Per rimetterlo online: cancella questa riga di apertura e la
+     riga di chiusura del commento in fondo al blocco. Nient'altro.
+     I file halloween.html, halloween.css e la locandina restano
+     al loro posto e sono già aggiornati (Open Bar, 30 €).
+  ═══════════════════════════════════════════════════════════ */
+  /*
   {
     // --- identificativo univoco: usato nell'URL e nel Google Sheet ---
     id:            'halloween-2026',
@@ -49,7 +57,7 @@ const REWIND_EVENTS = [
     locationDetail:'Zola Predosa',
 
     // --- etichette mostrate sulla card ---
-    tags:          ['Halloween Party', 'Free Bar'],
+    tags:          ['Halloween Party', 'Open Bar'],
 
     // --- locandina ---
     // Metti il file nella cartella "locandine/" e scrivi qui il percorso.
@@ -68,8 +76,8 @@ const REWIND_EVENTS = [
     time:          '22:00 – 04:00',
     dressCode:     '',   // es. 'Costume obbligatorio'
     lineup:        '',   // es. 'DJ X · DJ Y'
-    price:         '25 \u20AC',
-    ingresso:      'Free Bar',
+    price:         '30 \u20AC',
+    ingresso:      'Open Bar',
 
     // --- programma della serata (facoltativo) ---
     // esempio: [{time:'22:00', label:'Apertura porte'}, {time:'23:00', label:'DJ Set'}]
@@ -80,7 +88,9 @@ const REWIND_EVENTS = [
 
     // --- archivio foto (si usa solo quando l'evento è passato) ---
     galleryUrl:    ''
+  }
   },
+  */
 
   // ==============================================================
   // EVENTI PASSATI (archivio)
