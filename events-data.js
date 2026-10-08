@@ -37,61 +37,6 @@ const REWIND_EVENTS = [
     galleryUrl:    ''
   },
 
-  /* ═══════════════════════════════════════════════════════════
-     HALLOWEEN — ARCHIVIATO MOMENTANEAMENTE
-     Per rimetterlo online: cancella questa riga di apertura e la
-     riga di chiusura del commento in fondo al blocco. Nient'altro.
-     I file halloween.html, halloween.css e la locandina restano
-     al loro posto e sono già aggiornati (Open Bar, 30 €).
-  ═══════════════════════════════════════════════════════════ */
-  /*
-  {
-    // --- identificativo univoco: usato nell'URL e nel Google Sheet ---
-    id:            'halloween-2026',
-
-    // --- dati principali ---
-    title:         'REWIND HALLOWEEN',
-    date:          '2026-10-31',          // formato AAAA-MM-GG (serve al sito per capire se è passato)
-    displayDate:   '31 Ottobre 2026',     // come viene scritto sul sito
-    location:      'Chiesa sconsacrata',
-    locationDetail:'Zola Predosa',
-
-    // --- etichette mostrate sulla card ---
-    tags:          ['Halloween Party', 'Open Bar'],
-
-    // --- locandina ---
-    // Metti il file nella cartella "locandine/" e scrivi qui il percorso.
-    // Se il file non esiste, la card mostra comunque un segnaposto elegante.
-    image:         'halloween-2026.jpg',
-
-    // --- pagina dedicata (facoltativo) ---
-    // Se valorizzato, la card porta a questa pagina invece che a evento.html.
-    // Serve per eventi con grafica speciale. Lascia '' per usare la pagina standard.
-    customPage:    'halloween.html',
-
-    // --- testo descrittivo (facoltativo) ---
-    description:   '',
-
-    // --- dettagli: lascia '' finché non li hai definiti ---
-    time:          '22:00 – 04:00',
-    dressCode:     '',   // es. 'Costume obbligatorio'
-    lineup:        '',   // es. 'DJ X · DJ Y'
-    price:         '30 \u20AC',
-    ingresso:      'Open Bar',
-
-    // --- programma della serata (facoltativo) ---
-    // esempio: [{time:'22:00', label:'Apertura porte'}, {time:'23:00', label:'DJ Set'}]
-    program:       [],
-
-    // --- prenotazioni ---
-    registrationEnabled: true,   // true = form attivo · false = "prossimamente"
-
-    // --- archivio foto (si usa solo quando l'evento è passato) ---
-    galleryUrl:    ''
-  }
-  },
-  */
-
   // ==============================================================
   // EVENTI PASSATI (archivio)
   // ==============================================================
