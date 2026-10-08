@@ -172,6 +172,7 @@
           <div class="tm-soldout" aria-hidden="true"><span>Sold Out</span></div>
           <p class="tm-opt-kicker">Dalle 20:30</p>
           <div class="tm-opt-name">Cena<br>Spettacolo</div>
+          <p class="tm-opt-release" data-cfg="temakinho.release_cena" data-cfg-optional></p>
           <div class="tm-opt-price"><span data-cfg="temakinho.prezzo_cena">40</span><span class="cur">&#8364;</span></div>
           <p class="tm-opt-note">Cena con spettacolo, poi si continua con il DJ Set.</p>
           <button type="button" class="tm-opt-btn cena" id="tmCenaBtn">Prenota qui</button>
@@ -182,6 +183,7 @@
           <div class="tm-soldout" aria-hidden="true"><span>Sold Out</span></div>
           <p class="tm-opt-kicker">Dalle 22:30</p>
           <div class="tm-opt-name">DJ Set</div>
+          <p class="tm-opt-release" data-cfg="temakinho.release_dj" data-cfg-optional></p>
           <div class="tm-opt-price"><span data-cfg="temakinho.prezzo_dj">15</span><span class="cur">&#8364;</span></div>
           <p class="tm-opt-note" data-cfg="temakinho.nota_dj">Drink incluso.</p>
           <button type="button" class="tm-opt-btn dj" id="tmDjBtn">Prenota qui</button>
@@ -329,7 +331,12 @@ async function caricaConfig(){
     if(!cfg || cfg.error) return;
     document.querySelectorAll('[data-cfg]').forEach(el => {
       const k = el.getAttribute('data-cfg');
-      if(cfg[k] !== undefined && cfg[k] !== '') el.textContent = cfg[k];
+      if(cfg[k] === undefined) return;               // chiave assente: resta il testo della pagina
+      let val = String(cfg[k]).trim();
+      /* il simbolo € è già nella pagina: se scritto nel valore va tolto */
+      if(/\.prezzo_/.test(k)) val = val.replace(/\s*(€|&#8364;|EUR)\s*/gi,'').trim();
+      if(val !== '') el.textContent = val;
+      else if(el.hasAttribute('data-cfg-optional')) el.textContent = '';   // vuoto = scritta nascosta
     });
     applicaSoldOut(cfg);
   }catch(e){ /* se il foglio non risponde restano i valori scritti nella pagina */ }
