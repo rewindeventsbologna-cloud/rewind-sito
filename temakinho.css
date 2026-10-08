@@ -184,6 +184,46 @@ body.tm-page #prenota.tm-book{
 .tm-opt-btn.dj{background:var(--tm-brass);color:#0A1D16;}
 .tm-opt-btn.dj:hover{background:var(--tm-brassl);transform:translateY(-1px);}
 
+/* ─── SOLD OUT (si accende dal pannello staff) ─── */
+.tm-opt{position:relative;overflow:hidden;}
+.tm-soldout{display:none;}
+.tm-opt.is-soldout{
+  border-color:rgba(201,165,92,0.22);
+  background:rgba(244,239,227,0.025);
+}
+.tm-opt.is-soldout:hover{transform:none;box-shadow:none;}
+.tm-opt.is-soldout > :not(.tm-soldout){opacity:.38;}
+.tm-opt.is-soldout .tm-opt-price{text-decoration:line-through;text-decoration-thickness:2px;}
+.tm-opt.is-soldout .tm-soldout{
+  display:flex;align-items:center;justify-content:center;
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+}
+.tm-soldout span{
+  font-family:var(--FD);font-size:clamp(2.2rem,5vw,3rem);letter-spacing:.14em;text-indent:.14em;
+  color:var(--tm-brassl);
+  padding:12px 26px 10px;
+  border:2px solid var(--tm-brass);
+  outline:1px solid rgba(201,165,92,0.45);outline-offset:4px;
+  background:rgba(7,20,16,0.88);
+  transform:rotate(-8deg);
+  box-shadow:0 18px 50px rgba(0,0,0,0.55);
+  white-space:nowrap;
+}
+.tm-opt-btn:disabled,
+.tm-opt-btn:disabled:hover{
+  background:transparent;color:var(--tm-muted);
+  border:1px solid rgba(244,239,227,0.22);
+  cursor:not-allowed;transform:none;
+}
+.tm-soldout-note{
+  display:none;margin:26px auto 0;max-width:560px;text-align:center;
+  font-family:var(--FS);font-style:italic;font-size:1.05rem;line-height:1.7;
+  color:var(--tm-brassl);
+  padding:14px 18px;border:1px solid rgba(201,165,92,0.35);
+  background:rgba(201,165,92,0.07);
+}
+.tm-soldout-note.show{display:block;}
+
 /* ─── Modal ─── */
 .tm-modal{
   position:fixed;inset:0;z-index:9500;display:none;

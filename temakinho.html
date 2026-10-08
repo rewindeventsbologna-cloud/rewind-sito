@@ -168,7 +168,8 @@
       <div class="tm-options">
 
         <!-- ── CENA SPETTACOLO → WhatsApp ── -->
-        <div class="tm-opt">
+        <div class="tm-opt" id="tmOptCena">
+          <div class="tm-soldout" aria-hidden="true"><span>Sold Out</span></div>
           <p class="tm-opt-kicker">Dalle 20:30</p>
           <div class="tm-opt-name">Cena<br>Spettacolo</div>
           <div class="tm-opt-price"><span data-cfg="temakinho.prezzo_cena">40</span><span class="cur">&#8364;</span></div>
@@ -177,7 +178,8 @@
         </div>
 
         <!-- ── DJ SET → form ── -->
-        <div class="tm-opt">
+        <div class="tm-opt" id="tmOptDj">
+          <div class="tm-soldout" aria-hidden="true"><span>Sold Out</span></div>
           <p class="tm-opt-kicker">Dalle 22:30</p>
           <div class="tm-opt-name">DJ Set</div>
           <div class="tm-opt-price"><span data-cfg="temakinho.prezzo_dj">15</span><span class="cur">&#8364;</span></div>
@@ -186,6 +188,10 @@
         </div>
 
       </div>
+
+      <!-- Avviso mostrato solo quando una delle due opzioni è sold out
+           (si accende dal pannello staff nello script Google) -->
+      <p class="tm-soldout-note" id="tmSoldNote" role="status" aria-live="polite"></p>
 
       <!-- ── FORM DJ SET ── -->
       <div class="tm-form-wrap" id="tmFormWrap">
@@ -325,8 +331,59 @@ async function caricaConfig(){
       const k = el.getAttribute('data-cfg');
       if(cfg[k] !== undefined && cfg[k] !== '') el.textContent = cfg[k];
     });
+    applicaSoldOut(cfg);
   }catch(e){ /* se il foglio non risponde restano i valori scritti nella pagina */ }
 }
+
+/* ─── SOLD OUT ───────────────────────────────────────────────────
+   Si accende e si spegne dal pannello staff (nello script Google) oppure
+   scrivendo SI nel foglio "config" alle chiavi:
+      temakinho.dj_soldout     → DJ Set sold out
+      temakinho.cena_soldout   → Cena Spettacolo sold out
+   Con NO (o cella vuota) l'opzione torna prenotabile.            */
+const soldOut = { dj:false, cena:false };
+
+function isAttivo(v){
+  if(v === true) return true;
+  const s = String(v == null ? '' : v).trim().toLowerCase();
+  return ['si','sì','yes','true','1','x','sold out','soldout'].indexOf(s) !== -1;
+}
+
+function segnaSoldOut(tipo, attivo){
+  soldOut[tipo] = attivo;
+  const card = document.getElementById(tipo === 'dj' ? 'tmOptDj' : 'tmOptCena');
+  const btn  = document.getElementById(tipo === 'dj' ? 'tmDjBtn' : 'tmCenaBtn');
+  card.classList.toggle('is-soldout', attivo);
+  btn.disabled = attivo;
+  btn.textContent = attivo ? 'Sold out' : 'Prenota qui';
+  btn.setAttribute('aria-label', attivo
+    ? (tipo === 'dj' ? 'DJ Set sold out' : 'Cena Spettacolo sold out')
+    : 'Prenota qui');
+
+  if(tipo === 'dj' && attivo){
+    /* se il form era aperto lo chiudiamo, a meno che la prenotazione
+       sia già andata a buon fine (resta visibile la conferma) */
+    const w = document.getElementById('tmFormWrap');
+    if(!document.getElementById('tmConfirm').classList.contains('show')) w.classList.remove('open');
+  }
+  aggiornaAvviso();
+}
+
+function aggiornaAvviso(){
+  const n = document.getElementById('tmSoldNote');
+  let t = '';
+  if(soldOut.dj && soldOut.cena) t = 'Serata sold out. Grazie a tutti: ci vediamo al prossimo Rewind.';
+  else if(soldOut.dj)   t = 'Il DJ Set è sold out. La Cena Spettacolo è ancora prenotabile e prosegue con il DJ Set.';
+  else if(soldOut.cena) t = 'La Cena Spettacolo è sold out. Il DJ Set è ancora prenotabile.';
+  n.textContent = t;
+  n.classList.toggle('show', !!t);
+}
+
+function applicaSoldOut(cfg){
+  segnaSoldOut('dj',   isAttivo(cfg['temakinho.dj_soldout']));
+  segnaSoldOut('cena', isAttivo(cfg['temakinho.cena_soldout']));
+}
+
 caricaConfig();
 
 /* ─── WhatsApp per la cena ─── */
@@ -336,13 +393,14 @@ document.getElementById('tmWaLink').setAttribute('href', waHref);
 const modal = document.getElementById('tmModal');
 function apriModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
 function chiudiModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
-document.getElementById('tmCenaBtn').addEventListener('click', apriModal);
+document.getElementById('tmCenaBtn').addEventListener('click', () => { if(!soldOut.cena) apriModal(); });
 document.getElementById('tmModalClose').addEventListener('click', chiudiModal);
 modal.addEventListener('click', e => { if(e.target === modal) chiudiModal(); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') chiudiModal(); });
 
 /* ─── Apertura form DJ Set ─── */
 document.getElementById('tmDjBtn').addEventListener('click', () => {
+  if(soldOut.dj) return;
   const w = document.getElementById('tmFormWrap');
   w.classList.add('open');
   w.scrollIntoView({behavior:'smooth', block:'start'});
@@ -424,6 +482,15 @@ function cMob(){mob.classList.remove('open');hamb.classList.remove('open');}
       let json = null;
       try { json = await resp.json(); }
       catch(ex2){ throw new Error('Risposta non leggibile dal server'); }
+      /* il DJ Set è andato sold out mentre la pagina era aperta */
+      if(json && json.error === 'SOLD_OUT'){
+        done = true;                 // niente altri tentativi
+        segnaSoldOut('dj', true);    // chiude il form e mostra l'avviso
+        document.getElementById('tmSoldNote').textContent =
+          'Ci dispiace, il DJ Set è appena andato sold out. La Cena Spettacolo è ancora prenotabile e prosegue con il DJ Set.';
+        document.getElementById('prenota').scrollIntoView({behavior:'smooth', block:'start'});
+        return;
+      }
       if(!json || json.error) throw new Error((json && json.error) || 'Errore sconosciuto');
       if(json.ok !== true)    throw new Error('Salvataggio non confermato');
 
