@@ -970,3 +970,42 @@ footer{
 @media(max-width:900px){
   #prossimi,#format,#passati{padding:70px 20px;}
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO HOMEPAGE — niente sovrapposizioni su nessuno schermo
+   Lo spazio del menu in alto e della scritta "Scopri" in basso è
+   riservato: il contenuto sta sempre in mezzo. Logo, scritta REWIND
+   e countdown si rimpiccioliscono anche in base all'ALTEZZA dello
+   schermo (portatili bassi, telefono in orizzontale).
+═══════════════════════════════════════════════════════════════ */
+#hero{
+  height:auto;
+  min-height:100vh;min-height:100svh;
+  box-sizing:border-box;
+  padding:116px 0 118px;              /* sopra: menu · sotto: "Scopri" */
+}
+#hero .hero-content{padding:0 20px;}
+#hero .hero-logo{
+  width:clamp(64px, min(18vw, 15vh), 200px);
+  margin-bottom:clamp(8px, 2vh, 16px);
+}
+#hero .hero-word{
+  font-size:clamp(4.2rem, min(17vw, 25vh), 16rem);
+  margin-bottom:clamp(4px, 1.2vh, 10px);
+}
+#hero .hero-tag{margin-bottom:clamp(4px, .9vh, 8px);}
+#hero .hero-edition{margin-bottom:clamp(14px, 3.6vh, 36px);}
+#hero .countdown-wrap{margin-bottom:clamp(16px, 3.6vh, 36px);}
+#hero .cd-num{font-size:clamp(1.9rem, min(5vw, 7.5vh), 3.8rem);}
+#hero .cd-sep{font-size:clamp(1.5rem, min(3.5vw, 5.5vh), 2.8rem);}
+#hero .home-scroll{bottom:24px;}
+
+@media(max-width:900px){
+  #hero{padding:100px 0 112px;}
+}
+/* schermi bassi (portatili piccoli, telefono in orizzontale):
+   la scritta "Scopri" non serve e libera spazio */
+@media(max-height:620px){
+  #hero{padding-bottom:40px;}
+  #hero .home-scroll{display:none;}
+}
