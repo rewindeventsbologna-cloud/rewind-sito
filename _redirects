@@ -1,0 +1,4 @@
+# Cloudflare Pages — reindirizzamenti
+# Link breve e privato al pannello staff (non collegato da nessuna pagina del sito).
+# Il pannello chiede comunque il PIN.
+/staff-rw26  https://script.google.com/macros/s/AKfycby7nQ-jCiey4WeuoeHUAcldl_0ZBRuSk7Po81JXmdFmNujzNs98HWzJDDGQqw4Hrps0/exec?pannello=rw-r3iv3nafh9  302
